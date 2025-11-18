@@ -1,13 +1,18 @@
 
 
 const Header = (props) => {
-    return(<div>
-        <p>Logo</p>
-        <p>Home</p>
-        <p>Women</p>
-        <p>Men</p>
-        <p>Browse</p>
-        <p>About</p>
+    return(<div className="flex justify-between">
+        <div className="">
+            <p>Logo</p>
+        </div>
+
+        <div className="flex gap-x-3">
+            <p>Home</p> <p>|</p>
+            <p>Women</p> <p>|</p>
+            <p>Men</p> <p>|</p>
+            <p>Browse</p> <p>|</p>
+            <p>About</p>
+        </div>
     </div>)
 }
 
