@@ -6,4 +6,4 @@ const AboutView = (props) => {
     </div>)
 }
 
-export default <AboutView />;
+export default AboutView;

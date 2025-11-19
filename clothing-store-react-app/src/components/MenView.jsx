@@ -6,4 +6,4 @@ const MenView = (props) => {
     </div>)
 }
 
-export default <MenView />;
+export default MenView;

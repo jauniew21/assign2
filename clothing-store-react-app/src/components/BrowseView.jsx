@@ -6,4 +6,4 @@ const BrowseView = (props) => {
     </div>)
 }
 
-export default <BrowseView />;
+export default BrowseView;
