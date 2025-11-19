@@ -1,13 +1,13 @@
-
+import { Link } from 'react-router-dom'
 
 const Header = (props) => {
-    return(<div className="flex justify-between">
-        <div className="">
+    return(<div className="flex">
+        <div className="flex justify-start">
             <p>Logo</p>
         </div>
 
-        <div className="flex gap-x-3">
-            <p>Home</p> <p>|</p>
+        <div className="flex justify-end gap-x-3">
+            <Link to="/home">Home</Link> <p>|</p>
             <p>Women</p> <p>|</p>
             <p>Men</p> <p>|</p>
             <p>Browse</p> <p>|</p>
