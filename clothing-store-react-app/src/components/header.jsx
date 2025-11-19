@@ -20,13 +20,12 @@ const Header = (props) => {
                             </div>
                         </div>
                     </div>
-                    
+
+                    <div>
+                        <Link to="/cart">Cart</Link>
+                    </div> 
                 </div>
             </div>
-        </div>
-
-        <div>
-            <Link to="/cart">Cart</Link>
         </div>
     </div>)
 }
