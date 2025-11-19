@@ -13,6 +13,10 @@ const Header = (props) => {
             <p>Browse</p> <p>|</p>
             <p>About</p>
         </div>
+
+        <div>
+            <Link to="/cart">Cart</Link>
+        </div>
     </div>)
 }
 
