@@ -5,6 +5,7 @@ import './App.css'
 import { Routes , Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import HomeView from './components/HomeView.jsx'
+import ShoppingCartView from './components/ShoppingCartView.jsx'
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/home" element={HomeView}/>
+        <Route path="/cart" element={ShoppingCartView}/>
       </Routes>
     </main>
   )
 }
 
-export default App
+export default App;
