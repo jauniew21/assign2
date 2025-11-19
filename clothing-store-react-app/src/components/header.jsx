@@ -12,7 +12,7 @@ const Header = (props) => {
                     <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
                         <div class="hidden sm:ml-6 sm:block">
                             <div class="flex space-x-4">
-                                <Link to="/home" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Home</Link>
+                                <Link to="/" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Home</Link>
                                 <Link to="/women" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Women</Link>
                                 <Link to="/men" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Men</Link>
                                 <Link to="/browse" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Browse</Link>

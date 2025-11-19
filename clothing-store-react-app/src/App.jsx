@@ -16,7 +16,7 @@ function App() {
     <main>
       <Header />
       <Routes>
-        <Route path="/home" element={HomeView}/>
+        <Route path="/" element={HomeView}/>
         <Route path="/women" element={WomenView}/>
         <Route path="/men" element={MenView}/>
         <Route path="/browse" element={BrowseView}/>
