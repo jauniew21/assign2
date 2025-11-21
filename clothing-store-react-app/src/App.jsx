@@ -10,6 +10,7 @@ import WomenView from './components/WomenView.jsx'
 import MenView from './components/MenView.jsx'
 import BrowseView from './components/BrowseView.jsx'
 import AboutView from './components/AboutView.jsx'
+import Product from './components/Product.jsx'
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -20,14 +21,12 @@ function App() {
       .then(resp => resp.json())
       .then(data => setProducts(data))
       .catch(err => console.error(err));
-    console.log("fetched??")
   }, []);
 
   
   return (
     <main>
       <Header />
-      {/* {products.map(prod => <p>{prod.id}test</p>)} */}
       <Routes>
         <Route path="/" element={<HomeView products={products}/>} />
         <Route path="/women" element={<WomenView products={products}/>}  />
@@ -35,6 +34,7 @@ function App() {
         <Route path="/browse" element={<BrowseView products={products}/>}/>
         <Route path="/about" element={<AboutView />} />
         <Route path="/cart" element={<ShoppingCartView products={products}/>} />
+        <Route path="/product/:id" element={<Product products={products}/>} />
       </Routes>
     </main>
   )
