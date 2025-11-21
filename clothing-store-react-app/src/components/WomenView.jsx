@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
+import placeholder from '../assets/shop-placeholder.png'
 
 const WomenView = (props) => {
-    // const [products, setProducts] = useState([]);
+    const womenEntries = props.products.filter(prod => prod.gender == 'womens')
 
-    // useEffect(() => {
-    //     const url = 'https://gist.githubusercontent.com/rconnolly/d37a491b50203d66d043c26f33dbd798/raw/37b5b68c527ddbe824eaed12073d266d5455432a/clothing-compact.json'
-    //     fetch(url)
-    //         .then(resp => resp.json())
-    //         .then(data => setProducts(data))
-    //         .catch(err => console.error(err));
-    //     // console.log("fetched??")
-    // }, []);
-
-    return (<ul>
-        {props.products.map(prod => <li>{prod.id}testing</li>)}
-    </ul>)
+    return (<div>
+        <ul>
+            {womenEntries.map(prod => <div>
+            <img key={prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
+            <li key={prod.name}>{prod.name}</li>
+            <li key={prod.price+prod.cost}>Price: ${prod.price.toFixed(2)}</li>
+            </div>)}
+        </ul>
+    </div>)
 }
 
 export default WomenView;
