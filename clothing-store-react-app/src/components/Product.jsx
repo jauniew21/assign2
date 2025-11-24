@@ -1,9 +1,15 @@
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
 
 const Product = (props) => {
-    const { id } = useParams();
-    const thisProduct = props.products.find(prod => prod.id == id)
+    const { name } = useParams();
+    const thisProduct = props.products.find(prod => prod.name == name);
+    const relatedProd = props.products.filter(prod => 
+        prod.category == thisProduct.category && 
+        prod.gender == thisProduct.gender &&
+        prod.id != thisProduct.id)
+        .slice(0, 4);
 
     return(<div>
         <img src={placeholder} alt="placeholder image" className='size-72'/>
@@ -22,8 +28,12 @@ const Product = (props) => {
         </div>)} */}
         <button>+ Add to Cart</button>
 
-        <p>Similar Products: </p>
-        {/* Similar Products section */}
+        <p>Related Products</p>
+        {relatedProd.map(prod => <div>
+            <img src={placeholder} alt="placeholder image" className='size-36'/>
+            <Link to={`/product/${prod.name}`}>{prod.name}</Link>
+            <p>Price: ${prod.price.toFixed(2)}</p>
+        </div>)}
     </div>)
 }
 

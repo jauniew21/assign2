@@ -9,7 +9,7 @@ const WomenView = (props) => {
         <ul>
             {womenEntries.map(prod => <div key={prod.id}>
             <img key={prod.price+prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
-            <Link to={`/product/${prod.id}`} key={prod.name} className=''>{prod.name}</Link>
+            <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
             <li key={prod.price-prod.id}>Price: ${prod.price.toFixed(2)}</li>
             </div>)}
         </ul>
