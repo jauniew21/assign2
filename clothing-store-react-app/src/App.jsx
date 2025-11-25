@@ -11,7 +11,7 @@ import MenView from './components/MenView.jsx'
 import BrowseView from './components/BrowseView.jsx'
 import AboutView from './components/AboutView.jsx'
 import Product from './components/Product.jsx'
-import { CartContextProvider } from './components/CartContext.jsx'
+import CartContextProvider from './components/CartContext.jsx'
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <main>
-      <CartContextProvider>
+      <CartContextProvider products={products}>
         <Header />
         <Routes>
           <Route path="/" element={<HomeView products={products} />} />
