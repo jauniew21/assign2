@@ -26,7 +26,7 @@ const Product = (props) => {
         {/* {thisProduct.color.map(c => <div>
             <button className={`background-color: ${c.hex}`}>{c.name}</button>
         </div>)} */}
-        <button>+ Add to Cart</button>
+        <button>+ Add to Cart</button> 
 
         <p>Related Products</p>
         {relatedProd.map(prod => <div>

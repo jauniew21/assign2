@@ -1,72 +1,40 @@
+import { CartContext } from './CartContext'
+// import CartItems from './CartItems'
+
 const ShoppingCartView = (props) => {
+    const {cart, setCart} = useContext(CartContext)
+    // doubt that this removeItem works
+    const removeItem = () => {
+        let c = cart.find(c => c.id == props.product.id)
+        if (c) {
+            const newCart = [...cart]
+            newCart.pop(cart.id)
+            setCart(newCart)
+        }
+    }
+
+    const clearCart = () => {
+        setCart([])
+    }
 
     return (
-        // <div>
-        //     <p>poopyhead</p>
-        // </div>)
         <div>
+            <ul>
+                {cart.map(c => <li>
+                    <button onClick={removeItem}>-</button>
+                    {c.title}
+                </li>)}
+            </ul>
         <p className="">Shopping Cart</p>
         <div className="">
-            <div className="">
-                <p>Items</p>
-                <p>Color</p>
-                <p>Price</p>
-                <p>Quantity</p>
-                <p>Subtotal</p>
-            </div>
-            <div className="">
-                <p>Your shopping cart is empty.</p>
-            </div>
-            <div className="">
-                <div className="">
-                    <button>-</button>
-                    {/* <img src="">placeholder</img> */}
-                    <p className="">Product Title</p>
-                    {/* <span style="color: #E9E612">■</span> */}
-                </div>
-            </div>
-            <div className="">
-                <p className="">Shipping</p>
-                <select className="">
-                    <option value="standard">Standard</option>
-                    <option value="express">Express</option>
-                    <option value="priority">Priority</option>
-                </select>
-                <select className="">
-                    <option value="canada">Canada</option>
-                    <option value="usa">United States</option>
-                    <option value="internation">International</option>
-                </select>
-            </div>
-            <div className="">
-                <p className="">Summary</p>
-                <div className="">
-                    <div className="">
-                        <p>Merchandise</p>
-                        <p>$</p>
-                    </div>
-                    <div className="">
-                        <p>Shipping</p>
-                        <p>$</p>
-                    </div>
-                    <div className="">
-                        <p>Tax</p>
-                        <p>$ *5%*</p>
-                    </div>
-                    <div>
-                        <p>Total</p>
-                        <p>$</p>
-                    </div>
-                </div>
-                <button className="">Checkout</button>
-            </div>
+            <button onClick={checkout}>Checkout</button>
         </div>
 
     </div>
-
-
     )
 
 }
 
 export default ShoppingCartView;
+
+
