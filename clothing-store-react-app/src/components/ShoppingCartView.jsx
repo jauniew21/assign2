@@ -1,32 +1,42 @@
+import { useContext } from 'react'
+import { CartContext } from './CartContext'
+import CartItems from './CartItems'
+// import CartItems from './CartItems'
+
 const ShoppingCartView = (props) => {
+    const { cart, setCart } = useContext(CartContext)
+
+    const clearCart = () => {
+        setCart([])
+    }
+
+    const checkout = () => {
+        clearCart()
+        // toaster message
+        alert("Check outed.")
+    }
 
     return (
-        // <div>
-        //     <p>poopyhead</p>
-        // </div>)
         <div>
-        <p className="">Shopping Cart</p>
-        <div className="">
-            <div className="">
-                <p>Items</p>
-                <p>Color</p>
-                <p>Price</p>
-                <p>Quantity</p>
-                <p>Subtotal</p>
-            </div>
-            <div className="">
-                <p>Your shopping cart is empty.</p>
-            </div>
-            <div className="">
-                <div className="">
-                    <button>-</button>
-                    {/* <img src="">placeholder</img> */}
-                    <p className="">Product Title</p>
-                    {/* <span style="color: #E9E612">■</span> */}
+            <p className="">Shopping Cart</p>
+            <div className="grid">
+                <div className="flex flex-row">
+                    <p>Items</p>
+                    <div className="flex flex-row-reverse">
+                        <p>Color</p>
+                        <p>Size</p>
+                        <p>Price</p>
+                        <p>Quantity</p>
+                        <p>Subtotal</p>
+                    </div>
+
+                </div>
+                <div>
+                    <CartItems />
                 </div>
             </div>
-            <div className="">
-                <p className="">Shipping</p>
+            <div>
+                <p>Shipping</p>
                 <select className="">
                     <option value="standard">Standard</option>
                     <option value="express">Express</option>
@@ -58,15 +68,12 @@ const ShoppingCartView = (props) => {
                         <p>$</p>
                     </div>
                 </div>
-                <button className="">Checkout</button>
             </div>
+            <button onClick={checkout}>Checkout</button>
         </div>
-
-    </div>
-
-
     )
 
 }
-
 export default ShoppingCartView;
+
+
