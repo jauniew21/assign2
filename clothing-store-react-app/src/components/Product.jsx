@@ -1,9 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
-import { useContext } from "react";
 import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
-import { CartContext } from "./CartContext";
 import { CartContext } from "./CartContext";
 
 const Product = (props) => {
@@ -36,23 +34,28 @@ const Product = (props) => {
         <p>Price: ${thisProduct?.price.toFixed(2)}</p>
         <p>{thisProduct?.description}</p>
         <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" min="1" />
-        {thisProduct?.sizes.map(s => <div>
-            <button>{s}</button>
-        </div>)}
-        {/* {thisProduct.color.map(c => <div>
-            <button className={`background-color: ${c.hex}`}>{c.name}</button>
-        </div>)} */}
-        <button onClick={addItem}>+ Add to Cart</button>
-        <button onClick={addItem}>+ Add to Cart</button>
+        <input type="number" name="quantity" min="1"/>
+        <div className="flex gap-2 justify-center">
+            {thisProduct.sizes.map(s => <div>
+                <button className="w-12 h-12 flex justify-center items-center border rounded">{s}</button>
+            </div>)}
+        </div>
+        <div className="flex gap-2 justify-center">
+            {thisProduct.color.map(c => <div>
+                <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
+            </div>)}
+        </div>
+        <button>+ Add to Cart</button>
 
         <p>Related Products</p>
-        {relatedProd.map(prod => <div>
-            <img src={placeholder} alt="placeholder image" className='size-36' />
-            <img src={placeholder} alt="placeholder image" className='size-36' />
-            <Link to={`/product/${prod.name}`}>{prod.name}</Link>
-            <p>Price: ${prod.price.toFixed(2)}</p>
-        </div>)}
+        <div className="flex gap-6">
+            {relatedProd.map(prod => <div>
+                <img src={placeholder} alt="placeholder image" className='size-36'/>
+                <Link to={`/product/${prod.name}`}>{prod.name}</Link>
+                <p>{prod.material} {prod.category}</p>
+                <p>Price: ${prod.price.toFixed(2)}</p>
+            </div>)}
+        </div>
     </div>)
 }
 
