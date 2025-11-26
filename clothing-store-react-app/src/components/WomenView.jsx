@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import placeholder from '../assets/shop-placeholder.png'
+import placeholder from '../assets/shop-placeholder.png';
 import { Link } from 'react-router-dom';
 
 const WomenView = (props) => {
