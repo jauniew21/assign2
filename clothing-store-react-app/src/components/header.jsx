@@ -3,39 +3,36 @@ import { Link } from 'react-router-dom'
 import { CartContext } from './CartContext.jsx';
 
 const Header = (props) => {
+  const cart = useContext(CartContext);
+  console.log(cart)
 
-    const cart = useContext(CartContext)
-    console.log(cart)
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800/50 backdrop-blur-md border-b border-white/10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
 
-    return (<div className="flex relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-                <div className="absolute inset-y-0 left-0 flex items-center">
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <span className=''>Logo</span>
-                    </div>
+          <div className="text-gray-300 font-semibold">
+            Logo
+          </div>
 
-                    <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-                        <div className="hidden sm:ml-6 sm:block">
-                            <div className="flex space-x-4">
-                                <Link to="/" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Home</Link>
-                                <Link to="/women" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Women</Link>
-                                <Link to="/men" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Men</Link>
-                                <Link to="/browse" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Browse</Link>
-                                <Link to="/about" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>About</Link>
-                            </div>
-                        </div>
-                    </div>
+          <nav className="hidden sm:flex space-x-6">
+            <Link to="/">Home</Link>
+            <Link to="/women">Women</Link>
+            <Link to="/men">Men</Link>
+            <Link to="/browse">Browse</Link>
+            <Link to="/about">About</Link>
+          </nav>
 
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <div>
-                            <Link to="/cart" className='rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white'>Cart<span>{cart.length}</span></Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div>
+            <Link to="/cart">
+              Cart <span>({cart.length})</span>
+            </Link>
+          </div>
+
         </div>
-    </div>)
-}
+      </div>
+    </header>
+  );
+};
 
 export default Header;

@@ -26,7 +26,7 @@ const Product = (props) => {
         }
     }
 
-    return (<div>
+    return (<div className="pt-16">
         <img src={placeholder} alt="placeholder image" className='size-72' />
         <img src={placeholder} alt="placeholder image" className='size-36' />
         <img src={placeholder} alt="placeholder image" className='size-36' />

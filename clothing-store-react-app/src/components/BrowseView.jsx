@@ -7,7 +7,7 @@ const BrowseView = (props) => {
     const color_opt = [...new Set(props.products.flatMap(prod => prod.color))]
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
 
-    return (<div>
+    return (<div className='pt-16'>
         <div>
             <p>Gender</p>
             {gender_opt.map(g => <li>{g}</li>)}

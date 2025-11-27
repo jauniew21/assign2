@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const WomenView = (props) => {
     const womenEntries = props.products.filter(prod => prod.gender == 'womens')
 
-    return (<div>
+    return (<div className='pt-16'>
         <ul className="grid grid-cols-4 gap-6">
             {womenEntries.map(prod => 
             <li key={prod.id} className='flex flex-col items-center'>
