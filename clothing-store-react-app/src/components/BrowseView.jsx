@@ -1,16 +1,40 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
 
 const BrowseView = (props) => {
+    const [selected, setSelected] = useState([])
     const gender_opt = [...new Set(props.products.map(prod => prod.gender))]
     const category_opt = [...new Set(props.products.map(prod => prod.category))]
     const color_opt = [...new Set(props.products.flatMap(prod => prod.color))]
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
 
+    const toggleSelected = (param) => {
+        const copy = [...selected]
+        if (!selected.includes(param)) {
+            copy.push(param)
+            setSelected(copy)
+            console.log('added ' + param)
+        } else {
+            const indx = copy.findIndex(p => p == param)
+            copy.splice(indx, 1)
+            setSelected(copy)
+            console.log('removed ' + param)
+        }
+    }
+
     return (<div className='pt-16'>
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
             <p>Gender</p>
-            {gender_opt.map(g => <button>{g}</button>)}
+            {gender_opt.map(g => {
+            const active = selected.includes(g);
+
+            return(
+                <button onClick={() => toggleSelected(g)}
+                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                {g}</button>)}
+            )}
+
             <p>Category</p>
             {category_opt.map(c => <button>{c}</button>)}
             <p>Colors</p>
