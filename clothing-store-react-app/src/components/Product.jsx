@@ -15,14 +15,16 @@ const Product = (props) => {
 
     const { cart, setCart } = useContext(CartContext)
     
-    // does not work yet, but getting close?
     const addItem = () => {
-        let c = cart.find(c => c.id === props.products.id)
+        let c = cart.find(c => c.id === thisProduct.id)
         if (!c) {
             const newCart = [...cart]
-            newCart.push(props.product)
+            newCart.push(thisProduct)
             setCart(newCart)
-            alert("Added item" + c)
+            alert("Added item: " + thisProduct.name)
+        }
+        else {
+            alert("Added item again: " + c.name)
         }
     }
 
@@ -45,7 +47,7 @@ const Product = (props) => {
                 <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
             </div>)}
         </div>
-        <button>+ Add to Cart</button>
+        <button onClick={addItem}>+ Add to Cart</button>
 
         <p>Related Products</p>
         <div className="flex gap-6">

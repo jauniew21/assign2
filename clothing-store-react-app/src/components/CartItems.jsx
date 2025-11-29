@@ -1,42 +1,52 @@
 import { useContext } from "react";
 import { CartContext } from "./CartContext.jsx";
+import placeholder from '../assets/shop-placeholder.png'
 
 const CartItems = (props) => {
     const { cart, setCart } = useContext(CartContext)
 
-    const addItem = () => {
-        let c = cart.find(c => c.id === props.products.id)
-        if (!c) {
-            const newCart = [...cart]
-            newCart.push(props.products)
-            setCart(newCart)
-        }
-    }
-
-    // doubt that this removeItem works
-    const removeItem = () => {
-        let c = cart.find(c => c.id == props.products.id)
+    const removeItem = (id) => {
+        let c = cart.find(c => c.id === id)
         if (c) {
             const newCart = [...cart]
-            newCart.pop(cart.id)
+            newCart.pop(c)
             setCart(newCart)
         }
+        alert("Removed item: " + c.name)
     }
-    return (
-        <div>
-            <ul>
-                {cart.map(c => <li>
-                    <button onClick={removeItem}>-</button>
-                    <p>{c.name}</p>
-                    <p>*colour*</p>
-                    <p>{c.size}</p>
-                    <p>{c.price}</p>
-                    <p>*quantity</p>
-                    <p>*subtotal*</p>
-                </li>)}
-            </ul>
-        </div>
-    )
+
+    if (cart.length == 0) {
+        return (
+            <div>
+                <p>Cart is empty.</p>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="flex flex-col">
+                <div className="flex flex-row">
+                    <p>Color</p>
+                    <p>Size</p>
+                    <p>Price</p>
+                    <p>Quantity</p>
+                    <p>Subtotal</p>
+                </div>
+                <ul className="flex flex-row">
+                    {cart.map(c => <li className="flex flex-row">
+                        <button onClick={() => removeItem(c.id)}>-</button>
+                        <img src={placeholder} alt="placeholder image" className='size-36' />
+                        <p>{c.name}</p>
+                        <button style={{ backgroundColor: c.color[0].hex }} className="w-12 h-12"></button>
+                        <p>*size*{c.size}</p>
+                        <p>${c.price.toFixed(2)}</p>
+                        <p>*quantity</p>
+                        <p>${c.price}*quantity</p>
+                    </li>)}
+                </ul>
+            </div>
+        )
+    }
 }
 
 export default CartItems;

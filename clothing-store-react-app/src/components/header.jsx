@@ -4,7 +4,6 @@ import { CartContext } from './CartContext.jsx';
 
 const Header = (props) => {
   const cart = useContext(CartContext);
-  console.log(cart)
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800/50 backdrop-blur-md border-b border-white/10">
@@ -25,7 +24,7 @@ const Header = (props) => {
 
           <div>
             <Link to="/cart">
-              Cart <span>({cart.length})</span>
+              Cart <span>({cart.cart.length})</span>
             </Link>
           </div>
 
