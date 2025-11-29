@@ -1,27 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
 
 const BrowseView = (props) => {
     const [selected, setSelected] = useState([])
+    const [selEntries, setSelEntries] = useState(props.products)
     const gender_opt = [...new Set(props.products.map(prod => prod.gender))]
     const category_opt = [...new Set(props.products.map(prod => prod.category))]
     const color_opt = [...new Set(props.products.flatMap(prod => prod.color))]
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
+
+    const updateProducts = () => {
+        if (selected.length === 0) {
+            setSelEntries(props.products)
+        } else {
+            const filtered = props.products.filter(prod => selected.includes(prod.gender))
+            setSelEntries(filtered);
+        }
+    }
 
     const toggleSelected = (param) => {
         const copy = [...selected]
         if (!selected.includes(param)) {
             copy.push(param)
             setSelected(copy)
-            console.log('added ' + param)
         } else {
             const indx = copy.findIndex(p => p == param)
             copy.splice(indx, 1)
             setSelected(copy)
-            console.log('removed ' + param)
         }
+        updateProducts()
     }
+
+    useEffect(() => {
+        updateProducts();
+    }, [selected]);
 
     return (<div className='pt-16'>
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
@@ -47,7 +60,7 @@ const BrowseView = (props) => {
 
         <div className="pl-60 pt-16">
             <ul className="grid grid-cols-3 gap-6">
-                {props.products.map(prod => 
+                {selEntries.map(prod => 
                 <li key={prod.id} className='flex flex-col items-center'>
                 <img key={prod.price+prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
                 <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
