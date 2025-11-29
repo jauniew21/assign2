@@ -8,27 +8,29 @@ const BrowseView = (props) => {
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
 
     return (<div className='pt-16'>
-        <div>
+        <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
             <p>Gender</p>
-            {gender_opt.map(g => <li>{g}</li>)}
+            {gender_opt.map(g => <button>{g}</button>)}
             <p>Category</p>
-            {category_opt.map(c => <li>{c}</li>)}
+            {category_opt.map(c => <button>{c}</button>)}
             <p>Colors</p>
             {color_opt.map(c =>
                 <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
             )}
             <p>Sizes</p>
-            {size_opt.map(s => <li>{s}</li>)}
-        </div>
+            {size_opt.map(s => <button>{s}</button>)}
+        </nav>
 
-        <ul className="grid grid-cols-3 gap-6">
-            {props.products.map(prod => 
-            <li key={prod.id} className='flex flex-col items-center'>
-            <img key={prod.price+prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
-            <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
-            <p key={prod.price-prod.id}>Price: ${prod.price.toFixed(2)}</p>
-            </li>)}
-        </ul>
+        <div className="pl-60 pt-16">
+            <ul className="grid grid-cols-3 gap-6">
+                {props.products.map(prod => 
+                <li key={prod.id} className='flex flex-col items-center'>
+                <img key={prod.price+prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
+                <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
+                <p key={prod.price-prod.id}>Price: ${prod.price.toFixed(2)}</p>
+                </li>)}
+            </ul>
+        </div>
     </div>)
 }
 
