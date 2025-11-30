@@ -3,7 +3,14 @@ import placeholder from '../assets/shop-placeholder.png';
 import { Link } from 'react-router-dom';
 
 const WomenView = (props) => {
-    const womenEntries = props.products.filter(prod => prod.gender == 'womens')
+    console.log(props.gender);
+    let womenEntries = []
+
+    if (props.gender) {
+        womenEntries = props.products.filter(prod => prod.gender == 'womens')
+    } else {
+        womenEntries = props.products.filter(prod => prod.gender == 'mens')
+    }
 
     return (<div className='pt-16'>
         <ul className="grid grid-cols-4 gap-6">

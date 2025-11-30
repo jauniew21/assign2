@@ -54,7 +54,7 @@ const Product = (props) => {
             {relatedProd.map(prod => <div>
                 <img src={placeholder} alt="placeholder image" className='size-36'/>
                 <Link to={`/product/${prod.name}`}>{prod.name}</Link>
-                <p>{prod.material} {prod.category}</p>
+                <p>{prod.gender}' {prod.material} {prod.category}</p>
                 <p>Price: ${prod.price.toFixed(2)}</p>
             </div>)}
         </div>

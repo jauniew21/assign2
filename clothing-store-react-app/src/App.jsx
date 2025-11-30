@@ -31,8 +31,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomeView products={products} />} />
-          <Route path="/women" element={<WomenView products={products} />} />
-          <Route path="/men" element={<MenView products={products} />} />
+          <Route path="/women" element={<WomenView products={products} gender={true} />} />
+          <Route path="/men" element={<WomenView products={products} gender={false} />} />
           <Route path="/browse" element={<BrowseView products={products} />} />
           <Route path="/about" element={<AboutView />} />
           <Route path="/cart" element={<ShoppingCartView products={products} />} />
