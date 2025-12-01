@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
 import { CartContext } from "./CartContext";
@@ -14,18 +14,23 @@ const Product = (props) => {
         .slice(0, 4);
 
     const { cart, setCart } = useContext(CartContext)
+    const [selSize, setSelSize] = useState('')
     
     const addItem = () => {
+        if (!selSize) return;
+
         let c = cart.find(c => c.id === thisProduct.id)
         if (!c) {
             const newCart = [...cart]
-            newCart.push(thisProduct)
+            cartItem = thisProduct
+            // cartItem.size = selSize
+            newCart.push(cartItem)
             setCart(newCart)
-            alert("Added item: " + thisProduct.name)
+            alert("Added item: " + cartItem.name + cartItem.size)
         }
-        else {
-            alert("Added item again: " + c.name)
-        }
+        // else {
+        //     alert("Added item again: " + c.name)
+        // }
     }
 
     return (<div className="pt-16">
@@ -38,17 +43,16 @@ const Product = (props) => {
         <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" min="1"/>
         <div className="flex gap-2 justify-center">
-            {thisProduct.sizes.map(s => <div>
-                <button className="w-12 h-12 flex justify-center items-center border rounded">{s}</button>
+            {thisProduct?.sizes.map(s => <div>
+                <button key={s} onClick={() => setSelSize(s)} className="w-12 h-12 flex justify-center items-center border rounded">{s}</button>
             </div>)}
         </div>
         <div className="flex gap-2 justify-center">
-            {thisProduct.color.map(c => <div>
+            {thisProduct?.color.map(c => <div>
                 <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
             </div>)}
         </div>
-        <button onClick={addItem}>+ Add to Cart</button>
-
+        <button onClick={addItem} disabled={!selSize}>+ Add to Cart</button>
         <p>Related Products</p>
         <div className="flex gap-6">
             {relatedProd.map(prod => <div>
