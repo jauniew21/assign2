@@ -14,7 +14,9 @@ const BrowseView = (props) => {
         if (selected.length === 0) {
             setSelEntries(props.products)
         } else {
-            const filtered = props.products.filter(prod => selected.includes(prod.gender))
+            const filtered = props.products.filter(prod => 
+                selected.includes(prod.gender) ||
+                selected.includes(prod.category))
             setSelEntries(filtered);
         }
     }
@@ -40,16 +42,24 @@ const BrowseView = (props) => {
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
             <p>Gender</p>
             {gender_opt.map(g => {
-            const active = selected.includes(g);
+                const active = selected.includes(g);
 
-            return(
-                <button onClick={() => toggleSelected(g)}
-                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                {g}</button>)}
+                return(
+                    <button onClick={() => toggleSelected(g)}
+                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                    {g}</button>)}
             )}
 
             <p>Category</p>
-            {category_opt.map(c => <button>{c}</button>)}
+            {category_opt.map(c => {
+                const active = selected.includes(c);
+
+                return(
+                    <button onClick={() => toggleSelected(c)}
+                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                    {c}</button>)}
+            )}
+
             <p>Colors</p>
             {color_opt.map(c =>
                 <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
