@@ -12,6 +12,8 @@ const Product = (props) => {
         prod.gender == thisProduct.gender &&
         prod.id != thisProduct.id)
         .slice(0, 4);
+    const breadcrumb = "Home > " + thisProduct?.gender + " > " +
+        thisProduct?.category + " > " + thisProduct?.name
 
     const { cart, setCart } = useContext(CartContext)
     
@@ -29,9 +31,14 @@ const Product = (props) => {
     }
 
     return (<div className="pt-16">
+        <div className="py-2">
+            <p>{breadcrumb}</p>
+        </div>
         <img src={placeholder} alt="placeholder image" className='size-72' />
-        <img src={placeholder} alt="placeholder image" className='size-36' />
-        <img src={placeholder} alt="placeholder image" className='size-36' />
+        <div className="flex">
+            <img src={placeholder} alt="placeholder image" className='size-36' />
+            <img src={placeholder} alt="placeholder image" className='size-36' />
+        </div>
         <p>{thisProduct?.name}</p>
         <p>Price: ${thisProduct?.price.toFixed(2)}</p>
         <p>{thisProduct?.description}</p>

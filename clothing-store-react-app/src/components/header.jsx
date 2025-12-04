@@ -22,7 +22,8 @@ const Header = (props) => {
             <Link to="/about">About</Link>
           </nav>
 
-          <div>
+          <div className='flex space-x-3'>
+            <p>Admin Login</p>
             <Link to="/cart">
               Cart <span>({cart.cart.length})</span>
             </Link>

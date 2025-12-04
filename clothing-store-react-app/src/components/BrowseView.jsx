@@ -16,7 +16,9 @@ const BrowseView = (props) => {
         } else {
             const filtered = props.products.filter(prod => 
                 selected.includes(prod.gender) ||
-                selected.includes(prod.category))
+                selected.includes(prod.category) ||
+                selected.includes(prod.color.hex)
+            )
             setSelEntries(filtered);
         }
     }
@@ -61,9 +63,18 @@ const BrowseView = (props) => {
             )}
 
             <p>Colors</p>
-            {color_opt.map(c =>
-                <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
+            {/* fix color hex stuff */}
+            {color_opt.map(c => {
+                const active = selected.includes(c);
+
+                return(
+                    <button onClick={() => toggleSelected(c)} 
+                    style={{backgroundColor: c.hex}} 
+                    className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
+                    </button>)
+                }
             )}
+
             <p>Sizes</p>
             {size_opt.map(s => <button>{s}</button>)}
         </nav>
