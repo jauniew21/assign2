@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./CartContext.jsx";
 import placeholder from '../assets/shop-placeholder.png'
 
