@@ -12,26 +12,24 @@ const ShoppingCartView = (props) => {
     const [dest, setDest] = useState("canada")
 
     return (
-        <div className=''>
-            <p className="font-bold">Shopping Cart</p>
-            <div className="">
-                <div className="flex flex-col">
-                    <p className='self-start font-bold'>Items</p>
+        <div className='fixed left-0 top-16 w-screen py-5 px-80' >
+            <div className='flex flex-col'>
+                <p className="font-bold">Shopping Cart</p>
+                <div className="flex flex-col py-5">
                     <CartItems />
                 </div>
-            </div>
-            <div className='flex flex-row justify-between'>
-                <div>
-                    <p className='font-bold'>Shipping</p>
-                    <Shipping ship={ship} setShip={setShip} dest={dest} setDest={setDest}/>
+                <div className='flex flex-row justify-around pt-5 pb-10'>
+                    <div>
+                        <p className='font-bold'>Shipping</p>
+                        <Shipping ship={ship} setShip={setShip} dest={dest} setDest={setDest} />
+                    </div>
+                    <div className='w-80'>
+                        <p className='font-bold'>Summary</p>
+                        <CartSummary ship={ship} dest={dest} />
+                    </div>
                 </div>
-                <div>
-                    <p className='font-bold'>Summary</p>
-                    <CartSummary ship={ship} dest={dest} />
-                </div>
-
+                <Checkout />
             </div>
-            <Checkout />
         </div>
     )
 

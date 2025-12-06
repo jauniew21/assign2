@@ -14,15 +14,13 @@ const Checkout = () => {
         alert("Checkout - purchased.")
     }
 
-    if (cart.length > 0) {
-        return (
-            <button onClick={checkout}>Checkout</button>
-        )
-    }
-    else {
-        return (
-            <button className="">Checkout</button>
-        )
-    }
+    return (
+        <div>
+            {cart.length > 0 ? (<button onClick={checkout}>Checkout</button>) : (<button disabled className="border-none">Checkout</button>)}
+        </div>
+        
+        
+    )
+
 }
 export default Checkout;

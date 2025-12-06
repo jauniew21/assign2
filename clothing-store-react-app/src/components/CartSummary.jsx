@@ -4,26 +4,6 @@ import { CartContext } from './CartContext'
 const CartSummary = ({ ship, dest }) => {
     const { cart, setCart } = useContext(CartContext)
 
-    // if (cart.length == 0) {
-    //     return (<div>
-    //         <div className="">
-    //             <p>Merchandise</p>
-    //             <p>$0.00</p>
-    //         </div>
-    //         <div className="">
-    //             <p>Shipping</p>
-    //             <p>--</p>
-    //         </div>
-    //         <div className="">
-    //             <p>Tax</p>
-    //             <p>--</p>
-    //         </div>
-    //         <div>
-    //             <p>Total</p>
-    //             <p>$0.00</p>
-    //         </div>
-    //     </div>)
-    // } else {
     let tax = 0.05
     let shipCost = 10
 

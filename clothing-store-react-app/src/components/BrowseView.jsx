@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
+import { CartContext } from "./CartContext";
+import AddItemButton from "./AddItemButton";
 
 const BrowseView = (props) => {
     const [selected, setSelected] = useState([]);
@@ -11,7 +13,7 @@ const BrowseView = (props) => {
     const category_opt = [...new Set(props.products.map(prod => prod.category))]
     let color_opt = [...new Set(props.products.flatMap(prod => prod.color))];
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
-    
+
     const u_color = [...new Set(color_opt.flatMap(color => color.name))];
     const u_hex = [...new Set(color_opt.flatMap(color => color.hex))];
     color_opt = u_color.map((name, i) => ({
@@ -30,7 +32,7 @@ const BrowseView = (props) => {
         if (selected.length === 0) {
             setSelEntries(props.products)
         } else {
-            const filtered = props.products.filter(prod => 
+            const filtered = props.products.filter(prod =>
                 selected.includes(prod.gender) ||
                 selected.includes(prod.category) ||
                 selected.includes(prod.color.name) ||
@@ -52,6 +54,7 @@ const BrowseView = (props) => {
         }
         updateProducts()
     }
+    const { cart, setCart } = useContext(CartContext)
 
     useEffect(() => {
         updateProducts();
@@ -59,12 +62,12 @@ const BrowseView = (props) => {
 
     return (<div className='pt-16'>
         <select
-        onChange={(e) => setSort(e.target.value)}
-        className="px-3 py-2 rounded border bg-white">
-        <option value="">Sort by…</option>
-        <option value="name">Product Name (A–Z)</option>
-        <option value="price">Price</option>
-        <option value="category">Category</option>
+            onChange={(e) => setSort(e.target.value)}
+            className="px-3 py-2 rounded border bg-white">
+            <option value="">Sort by…</option>
+            <option value="name">Product Name (A–Z)</option>
+            <option value="price">Price</option>
+            <option value="category">Category</option>
         </select>
 
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
@@ -72,20 +75,22 @@ const BrowseView = (props) => {
             {gender_opt.map(g => {
                 const active = selected.includes(g);
 
-                return(
+                return (
                     <button onClick={() => toggleSelected(g)}
-                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                    {g}</button>)}
+                        className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                        {g}</button>)
+            }
             )}
 
             <p>Category</p>
             {category_opt.map(c => {
                 const active = selected.includes(c);
 
-                return(
+                return (
                     <button onClick={() => toggleSelected(c)}
-                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                    {c}</button>)}
+                        className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                        {c}</button>)
+            }
             )}
 
             <p>Sizes</p>
@@ -93,11 +98,12 @@ const BrowseView = (props) => {
             {size_opt.map(s => {
                 const active = selected.includes(s);
 
-                return(
+                return (
                     <button onClick={() => toggleSelected(s)}
-                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                    {s}</button>
-                )}
+                        className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                        {s}</button>
+                )
+            }
             )}
 
             <p>Colors</p>
@@ -105,23 +111,30 @@ const BrowseView = (props) => {
             {color_opt.map(c => {
                 const active = selected.includes(c);
 
-                return(
-                    <button onClick={() => toggleSelected(c.name)} 
-                    style={{backgroundColor: c.hex}} 
-                    className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
+                return (
+                    <button onClick={() => toggleSelected(c.name)}
+                        style={{ backgroundColor: c.hex }}
+                        className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
                     </button>)
-                }
+            }
             )}
         </nav>
 
         <div className="pl-60 pt-16">
             <ul className="grid grid-cols-3 gap-6">
-                {sortedProducts.map(prod => 
-                <li key={prod.id} className='flex flex-col items-center'>
-                <img key={prod.price+prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
-                <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
-                <p key={prod.price-prod.id}>Price: ${prod.price.toFixed(2)}</p>
-                </li>)}
+                {sortedProducts.map(prod =>
+                    <li key={prod.id} className='flex flex-col items-center'>
+                        <div className='group relative'>
+                            <img key={prod.price + prod.id} src={placeholder} alt="placeholder image" className='size-48' />
+                            <div className="absolute bottom-1 right-1 invisible group-hover:visible">
+                                <AddItemButton prod={prod} />
+                            </div>
+
+                        </div>
+                        <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
+                        <p key={prod.price - prod.id}>Price: ${prod.price.toFixed(2)}</p>
+
+                    </li>)}
             </ul>
         </div>
     </div>)
