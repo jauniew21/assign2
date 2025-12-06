@@ -7,8 +7,15 @@ const BrowseView = (props) => {
     const [selEntries, setSelEntries] = useState(props.products)
     const gender_opt = [...new Set(props.products.map(prod => prod.gender))]
     const category_opt = [...new Set(props.products.map(prod => prod.category))]
-    const color_opt = [...new Set(props.products.flatMap(prod => prod.color))]
+    let color_opt = [...new Set(props.products.flatMap(prod => prod.color))];
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
+    
+    const u_color = [...new Set(color_opt.flatMap(color => color.name))];
+    const u_hex = [...new Set(color_opt.flatMap(color => color.hex))];
+    color_opt = u_color.map((name, i) => ({
+        name,
+        hex: u_hex[i]
+    }))
 
     const updateProducts = () => {
         if (selected.length === 0) {
@@ -17,7 +24,8 @@ const BrowseView = (props) => {
             const filtered = props.products.filter(prod => 
                 selected.includes(prod.gender) ||
                 selected.includes(prod.category) ||
-                selected.includes(prod.color.hex)
+                selected.includes(prod.color.name) ||
+                prod.sizes.some(size => selected.includes(size))
             )
             setSelEntries(filtered);
         }
@@ -62,21 +70,30 @@ const BrowseView = (props) => {
                     {c}</button>)}
             )}
 
+            <p>Sizes</p>
+            {/* fix sizing */}
+            {size_opt.map(s => {
+                const active = selected.includes(s);
+
+                return(
+                    <button onClick={() => toggleSelected(s)}
+                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                    {s}</button>
+                )}
+            )}
+
             <p>Colors</p>
             {/* fix color hex stuff */}
             {color_opt.map(c => {
                 const active = selected.includes(c);
 
                 return(
-                    <button onClick={() => toggleSelected(c)} 
+                    <button onClick={() => toggleSelected(c.name)} 
                     style={{backgroundColor: c.hex}} 
                     className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
                     </button>)
                 }
             )}
-
-            <p>Sizes</p>
-            {size_opt.map(s => <button>{s}</button>)}
         </nav>
 
         <div className="pl-60 pt-16">
