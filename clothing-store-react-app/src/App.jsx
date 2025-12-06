@@ -12,6 +12,7 @@ import AboutView from './components/AboutView.jsx'
 import DashboardView from './components/DashboardView.jsx'
 import Product from './components/Product.jsx'
 import CartContextProvider from './components/CartContext.jsx'
+import Footer from './components/Footer.jsx'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +41,7 @@ function App() {
           <Route path="/product/:name" element={<Product products={products} />} />
           <Route path="/dashboard" element={<DashboardView products={products} />} />
         </Routes>
+        {isLoggedIn ? '' : <Footer />}
       </CartContextProvider>
     </main>
   )

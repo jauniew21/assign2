@@ -2,7 +2,7 @@
 
 const Footer = (props) => {
     return(<div>
-        <p>poopyhead</p>
+        <p>Github Link: https://github.com/jauniew21/assign2</p>
     </div>)
 }
 
