@@ -17,34 +17,36 @@ const CartItems = (props) => {
 
     if (cart.length == 0) {
         return (
-            <div>
+            <p>
                 <p>Cart is empty.</p>
-            </div>
+            </p>
         )
     }
     else {
         return (
-            <div className="flex flex-col">
-                <div className="flex flex-row">
-                    <p>Color</p>
-                    <p>Size</p>
-                    <p>Price</p>
-                    <p>Quantity</p>
-                    <p>Subtotal</p>
-                </div>
-                <ul className="flex flex-row">
-                    {cart.map(c => <li className="flex flex-row">
-                        <button onClick={() => removeItem(c.id)}>-</button>
-                        <img src={placeholder} alt="placeholder image" className='size-36' />
-                        <p>{c.name}</p>
-                        <button style={{ backgroundColor: c.color[0].hex }} className="w-12 h-12"></button>
-                        <p>*size*{c.size}</p>
-                        <p>${c.price.toFixed(2)}</p>
-                        <p>*quantity</p>
-                        <p>${c.price}*quantity</p>
-                    </li>)}
+            <p className="grid grid-flow-row auto-cols-auto auto-rows-auto gap-y-5 gap-x-10">
+                <p className="col-span-8 grid grid-cols-subgrid">
+                    <p className="col-start-4 font-bold">Color</p>
+                    <p className="font-bold">Size</p>
+                    <p className="font-bold">Price</p>
+                    <p className="font-bold">Quantity</p>
+                    <p className="font-bold">Subtotal</p>
+                </p>
+                <ul className="col-span-8 grid grid-cols-subgrid gap-y-5">
+                    {cart.map(c =>
+                        <li className="col-span-8 grid grid-cols-subgrid grid-flow-col justify-items-center items-center">
+                            <button className="h-11 w-11" onClick={() => removeItem(c.id)}>-</button>
+                            <img src={placeholder} alt="placeholder image" className='h-35 w-35'/>
+                            <p>{c.name}</p>
+                            <button style={{ backgroundColor: c.color[0].hex }} className="w-12 h-12"></button>
+                            <p>*size*{c.size}</p>
+                            <p>${c.price.toFixed(2)}</p>
+                            <p>*quantity</p>
+                            <p>${c.price}*quantity</p>
+                        </li>
+                    )}
                 </ul>
-            </div>
+            </p >
         )
     }
 }
