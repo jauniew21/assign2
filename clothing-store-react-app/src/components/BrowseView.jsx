@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import placeholder from '../assets/shop-placeholder.png'
 
 const BrowseView = (props) => {
-    const [selected, setSelected] = useState([])
-    const [selEntries, setSelEntries] = useState(props.products)
+    const [selected, setSelected] = useState([]);
+    const [selEntries, setSelEntries] = useState(props.products);
+    const [sort, setSort] = useState("");
+
     const gender_opt = [...new Set(props.products.map(prod => prod.gender))]
     const category_opt = [...new Set(props.products.map(prod => prod.category))]
     let color_opt = [...new Set(props.products.flatMap(prod => prod.color))];
@@ -16,6 +18,13 @@ const BrowseView = (props) => {
         name,
         hex: u_hex[i]
     }))
+
+    const sortedProducts = [...selEntries].sort((a, b) => {
+        if (sort === "name") return a.name.localeCompare(b.name);
+        if (sort === "price") return a.price - b.price;
+        if (sort === "category") return a.category.localeCompare(b.category);
+        return 0;
+    });
 
     const updateProducts = () => {
         if (selected.length === 0) {
@@ -49,6 +58,15 @@ const BrowseView = (props) => {
     }, [selected]);
 
     return (<div className='pt-16'>
+        <select
+        onChange={(e) => setSort(e.target.value)}
+        className="px-3 py-2 rounded border bg-white">
+        <option value="">Sort by…</option>
+        <option value="name">Product Name (A–Z)</option>
+        <option value="price">Price</option>
+        <option value="category">Category</option>
+        </select>
+
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
             <p>Gender</p>
             {gender_opt.map(g => {
@@ -98,7 +116,7 @@ const BrowseView = (props) => {
 
         <div className="pl-60 pt-16">
             <ul className="grid grid-cols-3 gap-6">
-                {selEntries.map(prod => 
+                {sortedProducts.map(prod => 
                 <li key={prod.id} className='flex flex-col items-center'>
                 <img key={prod.price+prod.id} src={placeholder} alt="placeholder image" className='size-48'/>
                 <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
