@@ -44,7 +44,7 @@ const Header = (props) => {
             ${props.isLoggedIn ? 'text-blue-600' : 'text-red-600'}`}>
               {logInOut}</button>
 
-            <Link to="/cart">
+            <Link to="/cart" className='self-center'>
               Cart <span>({cart.cart.length})</span>
             </Link>
           </div>
