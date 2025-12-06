@@ -4,18 +4,17 @@ import { CartContext } from './CartContext.jsx';
 
 const Header = (props) => {
   const cart = useContext(CartContext);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [logInOut, setLogInOut] = useState('Admin Login');
 
-  // for now....
-  const handleLogIn = () => {
-    setIsLoggedIn(!isLoggedIn);
+  const handleLogChange = () => {
+    props.handleLogIn()
 
-    if (isLoggedIn) {
+    if (props.isLoggedIn) {
       setLogInOut('Logout');
     } else {
       setLogInOut('Admin Login');
     }
+    console.log(props.isLoggedIn)
   }
 
   return (
@@ -35,14 +34,14 @@ const Header = (props) => {
             <Link to="/about">About</Link>
             <Link to="/dashboard"
             className={`bg-none transition-colors duration-200 
-            ${isLoggedIn ? 'hidden' : ''}`}>
+            ${props.isLoggedIn ? 'hidden' : ''}`}>
               Sales Dashboard</Link>
           </nav>
 
           <div className='flex space-x-3'>
-            <button onClick={handleLogIn}
+            <button onClick={handleLogChange}
             className={`bg-none transition-colors duration-200 
-            ${isLoggedIn ? 'text-blue-600' : 'text-red-600'}`}>
+            ${props.isLoggedIn ? 'text-blue-600' : 'text-red-600'}`}>
               {logInOut}</button>
 
             <Link to="/cart">

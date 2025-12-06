@@ -14,6 +14,7 @@ import Product from './components/Product.jsx'
 import CartContextProvider from './components/CartContext.jsx'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function App() {
   return (
     <main>
       <CartContextProvider products={products}>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} handleLogIn={() => {setIsLoggedIn(!isLoggedIn)}}/>
         <Routes>
           <Route path="/" element={<HomeView products={products} />} />
           <Route path="/women" element={<WomenView products={products} gender={true} />} />
