@@ -1,9 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { CartContext } from './CartContext.jsx';
 
 const Header = (props) => {
   const cart = useContext(CartContext);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [logInOut, setLogInOut] = useState('Admin Login');
+
+  // for now....
+  const handleLogIn = () => {
+    setIsLoggedIn(!isLoggedIn);
+
+    if (isLoggedIn) {
+      setLogInOut('Logout');
+    } else {
+      setLogInOut('Admin Login');
+    }
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800/50 backdrop-blur-md border-b border-white/10">
@@ -23,7 +36,11 @@ const Header = (props) => {
           </nav>
 
           <div className='flex space-x-3'>
-            <p>Admin Login</p>
+            <button onClick={handleLogIn}
+            className={`bg-none transition-colors duration-200 
+            ${isLoggedIn ? 'text-blue-600' : 'text-red-600'}`}>
+              {logInOut}</button>
+
             <Link to="/cart">
               Cart <span>({cart.cart.length})</span>
             </Link>
