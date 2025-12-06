@@ -33,6 +33,10 @@ const Header = (props) => {
             <Link to="/men" gender={false}>Men</Link>
             <Link to="/browse">Browse</Link>
             <Link to="/about">About</Link>
+            <Link to="/dashboard"
+            className={`bg-none transition-colors duration-200 
+            ${isLoggedIn ? 'hidden' : ''}`}>
+              Sales Dashboard</Link>
           </nav>
 
           <div className='flex space-x-3'>
