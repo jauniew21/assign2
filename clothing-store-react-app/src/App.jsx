@@ -9,10 +9,13 @@ import ShoppingCartView from './components/ShoppingCartView.jsx'
 import WomenView from './components/WomenView.jsx'
 import BrowseView from './components/BrowseView.jsx'
 import AboutView from './components/AboutView.jsx'
+import DashboardView from './components/DashboardView.jsx'
 import Product from './components/Product.jsx'
 import CartContextProvider from './components/CartContext.jsx'
+import Footer from './components/Footer.jsx'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -27,7 +30,7 @@ function App() {
   return (
     <main>
       <CartContextProvider products={products}>
-        <Header />
+        <Header isLoggedIn={isLoggedIn} handleLogIn={() => {setIsLoggedIn(!isLoggedIn)}}/>
         <Routes>
           <Route path="/" element={<HomeView products={products} />} />
           <Route path="/women" element={<WomenView products={products} gender={true} />} />
@@ -36,7 +39,9 @@ function App() {
           <Route path="/about" element={<AboutView />} />
           <Route path="/cart" element={<ShoppingCartView products={products} />} />
           <Route path="/product/:name" element={<Product products={products} />} />
+          <Route path="/dashboard" element={<DashboardView products={products} />} />
         </Routes>
+        {isLoggedIn ? '' : <Footer />}
       </CartContextProvider>
     </main>
   )
