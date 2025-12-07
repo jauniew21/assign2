@@ -63,7 +63,7 @@ const Product = (props) => {
                     </div>)}
                 </div>
                 <button onClick={addItem}>+ Add to Cart</button>
-                {props.isLoggedIn ? '' : <AdminProductView />}
+                {props.isLoggedIn ? '' : <AdminProductView product={thisProduct} />}
             </div>
         </div>
 
