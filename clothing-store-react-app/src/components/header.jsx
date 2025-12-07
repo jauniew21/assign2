@@ -39,10 +39,11 @@ const Header = (props) => {
           </nav>
 
           <div className='flex space-x-3'>
-            <button onClick={handleLogChange}
+            <Link to="/login"
+            // onClick={handleLogChange}
             className={`bg-none transition-colors duration-200 
             ${props.isLoggedIn ? 'text-blue-600' : 'text-red-600'}`}>
-              {logInOut}</button>
+              {logInOut}</Link>
 
             <Link to="/cart" className='self-center'>
               Cart <span>({cart.cart.length})</span>
