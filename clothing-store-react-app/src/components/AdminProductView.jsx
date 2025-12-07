@@ -1,8 +1,40 @@
 import { useState } from 'react'
 import Drawer from '@mui/material/Drawer';
+import { BarChart } from '@mui/x-charts/BarChart';
 
 const AdminProductView = (props) => {
     const [open, setOpen] = useState(false);
+    const product = props.product;
+
+    const metrics = product? 
+    [
+        {
+            label: 'Sales',
+            domestic: product.sales.domestic,
+            international: product.sales.international,
+            total: product.sales.total,
+        },
+        {
+            label: 'Gross',
+            domestic: product.sales.domestic * product.price,
+            international: product.sales.international * product.price,
+            total: product.sales.total * product.price,
+        },
+        {
+            label: 'Cost',
+            domestic: product.sales.domestic * product.cost,
+            international: product.sales.international * product.cost,
+            total: product.sales.total * product.cost,
+        },
+        {
+            label: 'Profit',
+            domestic: product.sales.domestic * (product.price - product.cost),
+            international: product.sales.international * (product.price - product.cost),
+            total: product.sales.total * (product.price - product.cost),
+        },
+        ]
+    : [];
+
 
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
@@ -14,91 +46,62 @@ const AdminProductView = (props) => {
             <Drawer open={open} onClose={toggleDrawer(false)}
             className=''>
                 <p>Admin Info</p>
-                <p>{props.product?.name} Sales Information</p>
+                <p>{product?.name} Sales Information</p>
                 
-                <label for="dom_sales">Domestic Sales:</label>
-                <input
-                    name='dom_sales'
-                    type="text"
-                    value={props.product?.sales.domestic.toFixed(2)}
-                />
+                {metrics.map(item => (
+                    <div key={item.label}>
+                        <p>{item.label}</p>
 
-                <label for="int_sales">International Sales:</label>
-                <input
-                    name='int_sales'
-                    type="text"
-                    value={props.product?.sales.international.toFixed(2)}
-                />
+                        <label>Domestic:</label>
+                        <input
+                        type="text"
+                        value={item.domestic.toFixed(2)}
+                        readOnly
+                        />
 
-                <label for="tot_sales">Total Sales:</label>
-                <input
-                    name='tot_sales'
-                    type="text"
-                    value={props.product?.sales.total.toFixed(2)}
-                />
+                        <label>International:</label>
+                        <input
+                        type="text"
+                        value={item.international.toFixed(2)}
+                        readOnly
+                        />
 
-                <label for="dom_gross">Domestic Gross:</label>
-                <input
-                    name='dom_gross'
-                    type="text"
-                    value={(props.product?.sales.domestic * props.product?.price).toFixed(2)}
-                />
+                        <label>Total:</label>
+                        <input
+                        type="text"
+                        value={item.total.toFixed(2)}
+                        readOnly
+                        />
+                    </div>
+                    ))}
 
-                <label for="int_gross">International Gross:</label>
-                <input
-                    name='int_gross'
-                    type="text"
-                    value={(props.product?.sales.international * props.product?.price).toFixed(2)}
-                />
-
-                <label for="total_gross">Total Gross:</label>
-                <input
-                    name='total_gross'
-                    type="text"
-                    value={(props.product?.sales.total * props.product?.price).toFixed(2)}
-                />
-
-                <label for="dom_cost">Domestic Cost:</label>
-                <input
-                    name='dom_cost'
-                    type="text"
-                    value={(props.product?.sales.domestic * props.product?.cost).toFixed(2)}
-                />
-
-                <label for="int_cost">International Cost:</label>
-                <input
-                    name='int_cost'
-                    type="text"
-                    value={(props.product?.sales.international * props.product?.cost).toFixed(2)}
-                />
-
-                <label for="total_cost">Total Cost:</label>
-                <input
-                    name='total_cost'
-                    type="text"
-                    value={(props.product?.sales.total * props.product?.cost).toFixed(2)}
-                />
-
-                <label for="dom_profit">Domestic Profit:</label>
-                <input
-                    name='dom_profit'
-                    type="text"
-                    value={(props.product?.sales.domestic - props.product?.cost).toFixed(2)}
-                />
-
-                <label for="int_profit">International Profit:</label>
-                <input
-                    name='int_profit'
-                    type="text"
-                    value={(props.product?.sales.international - props.product?.cost).toFixed(2)}
-                />
-
-                <label for="total_profit">Total Profit:</label>
-                <input
-                    name='total_profit'
-                    type="text"
-                    value={(props.product?.sales.total - props.product?.cost).toFixed(2)}
-                />
+                    <BarChart
+                        xAxis={[
+                            {
+                            scaleType: 'band',
+                            data: metrics.map(m => m.label),
+                            },
+                        ]}
+                        series={[
+                            {
+                            label: 'Domestic',
+                            data: metrics.map(m => Number(m.domestic.toFixed(2))),
+                            color: '#facc15', // yellow
+                            },
+                            {
+                            label: 'International',
+                            data: metrics.map(m => Number(m.international.toFixed(2))),
+                            color: '#3b82f6', // blue
+                            },
+                            {
+                            label: 'Total',
+                            data: metrics.map(m => Number(m.total.toFixed(2))),
+                            color: '#ef4444', // red
+                            },
+                        ]}
+                        width={650}
+                        height={350}
+                        />
             </Drawer>
         </div>
     )
