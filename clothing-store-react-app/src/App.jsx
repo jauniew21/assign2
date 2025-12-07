@@ -38,7 +38,7 @@ function App() {
           <Route path="/browse" element={<BrowseView products={products} />} />
           <Route path="/about" element={<AboutView />} />
           <Route path="/cart" element={<ShoppingCartView products={products} />} />
-          <Route path="/product/:name" element={<Product products={products} />} />
+          <Route path="/product/:name" element={<Product products={products} isLoggedIn={isLoggedIn} />} />
           <Route path="/dashboard" element={<DashboardView products={products} />} />
         </Routes>
         {isLoggedIn ? '' : <Footer />}

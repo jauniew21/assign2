@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { Link } from 'react-router-dom';
-import placeholder from '../assets/shop-placeholder.png'
+import placeholder from '../assets/shop-placeholder.png';
+import AdminProductView from "./AdminProductView";
 import { CartContext } from "./CartContext";
+import AddItemButton from "./AddItemButton";
+import Drawer from '@mui/material/Drawer';
 
 const Product = (props) => {
     const { name } = useParams();
@@ -60,13 +63,20 @@ const Product = (props) => {
                     </div>)}
                 </div>
                 <button onClick={addItem}>+ Add to Cart</button>
+                {props.isLoggedIn ? '' : <AdminProductView />}
             </div>
         </div>
 
         <p>Related Products</p>
         <div className="flex gap-6 justify-center">
             {relatedProd.map(prod => <div>
-                <img src={placeholder} alt="placeholder image" className='size-36'/>
+                <div className='group relative'>
+                    <img key={prod.price + prod.id} src={placeholder} alt="placeholder image" className='size-48' />
+                    <div className="absolute bottom-1 right-1 invisible group-hover:visible">
+                        <AddItemButton prod={prod} />
+                    </div>
+
+                </div>
                 <Link to={`/product/${prod.name}`}>{prod.name}</Link>
                 <p>{prod.gender}' {prod.material} {prod.category}</p>
                 <p>Price: ${prod.price.toFixed(2)}</p>
