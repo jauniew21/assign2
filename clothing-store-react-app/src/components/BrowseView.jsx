@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import placeholder from '../assets/shop-placeholder.png'
+import placeholder from '../assets/shop-placeholder.png';
 import { CartContext } from "./CartContext";
 import AddItemButton from "./AddItemButton";
 
