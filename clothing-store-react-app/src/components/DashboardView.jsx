@@ -4,6 +4,13 @@ const DashboardView = (props) => {
     const topSell = [...props.products].sort((a, b) => { return b.sales.total - a.sales.total })
     const topProfit = [...props.products].sort((a, b) => { return (b.sales.total * b.price) - (a.sales.total * a.price)})
 
+    const categoryTotals = props.products.reduce((acc, item) => {
+        if (!acc[item.category]) {
+            acc[item.category] = {
+                categ
+            }
+        }
+    })
     return (<div>
         <p>Sales Dashboard</p>
         <p>poopyhead</p>
@@ -56,6 +63,12 @@ const DashboardView = (props) => {
         </div>
         <div>
             <p>Pie Chart</p>
+            {/* <PieChart series={[
+                {data: [
+                    {id: 0, value: {}, label}
+
+                ]}
+            ]} */}
             <p>sales number by gender</p>
         </div>
         <div>
