@@ -1,10 +1,23 @@
 
 
 const LoginView = (props) => {
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        if (email === "123@gmail.com" && password === "123") {
+            props.handleLogIn();
+        } else {
+            alert("Invalid credentials");
+        }
+    };
+
     return (
         // TailwindPlus: https://tailwindcss.com/plus/ui-blocks/application-ui/forms/sign-in-forms
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST" class="space-y-6">
+        <form onSubmit={onSubmit} action="#" method="POST" class="space-y-6">
         <div>
             <label for="email" class="block text-sm/6 font-medium text-gray-100">Email address</label>
             <div class="mt-2">
@@ -26,7 +39,7 @@ const LoginView = (props) => {
 
         <div className="flex space-x-6">
             <button type="submit" class="flex w-48 justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign in</button>
-            <button type="submit" class="flex w-48 justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Register</button>
+            <button type="" class="flex w-48 justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Register</button>
         </div>
         </form>
     </div>
