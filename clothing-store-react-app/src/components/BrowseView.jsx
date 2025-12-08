@@ -60,7 +60,7 @@ const BrowseView = (props) => {
         <div>Sort: </div>
         <select
             onChange={(e) => setSort(e.target.value)}
-            className="px-3 py-2 rounded border bg-white">
+            className="px-3 py-2 rounded border bg-white text-black">
             {/* <option value="">Sort by…</option> */}
             <option value="name">Product Name (A–Z)</option>
             <option value="price">Price</option>

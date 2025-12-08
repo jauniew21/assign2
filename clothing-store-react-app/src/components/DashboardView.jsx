@@ -63,7 +63,7 @@ const DashboardView = (props) => {
                     {topSell.slice(0, 10).map(p => {
                         return (<tr>
                             <td>
-                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal" }}>{p.name}</Link>
+                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal", textDecoration: "underline" }} >{p.name}</Link>
                             </td>
                             <td>{p.gender}</td>
                             <td>{p.category}</td>
@@ -85,7 +85,7 @@ const DashboardView = (props) => {
                     {topProfit.slice(0, 10).map(p => {
                         return (<tr>
                             <td>
-                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal" }}>{p.name}</Link>
+                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal", textDecoration: "underline" }}>{p.name}</Link>
                             </td>
                             <td>{p.gender}</td>
                             <td>{p.category}</td>
