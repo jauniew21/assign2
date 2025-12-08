@@ -25,20 +25,20 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
     }
 
     return (
-        <div>
+        <div className='flex flex-col gap-2'>
             {prod.sizes && (
-                <div>
+                <div className='flex justify-center gap-2'>
                     {prod.sizes.map((size, i) => (
-                        <button key={i} type='button' onClick={() => setSelSize(size)}>{size}</button>
+                        <button key={i} type='button' className='w-12 h-12' onClick={() => setSelSize(size)}>{size}</button>
                     ))}
                 </div>
             )}
             {showQuantity && (
-                <div>
+                <div className='flex flex-row justify-center gap-2'>
                     <button type="button" onClick={() => setQuantity(prev => Math.max(prev - 1, 1))} >
                         -
                     </button>
-                    <input type="number"
+                    <input type="number" className='w-8'
                         value={quantity} min="1"
                         onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))} />
                     <button type="button"

@@ -1,4 +1,5 @@
 import { PieChart } from '@mui/x-charts/PieChart'
+import { Link } from 'react-router-dom';
 
 const DashboardView = (props) => {
     const topSell = [...props.products].sort((a, b) => { return b.sales.total - a.sales.total })
@@ -48,7 +49,7 @@ const DashboardView = (props) => {
 
 
     return (<div>
-        <p className='font-bold'>Sales Dashboard</p>
+        <p className='font-bold pt-16'>Sales Dashboard</p>
         <div className='grid grid-flow-row grid-cols-2 grid-auto-rows gap-y-8'>
             <div>
                 <p className='font-bold'>Top 10 Selling Products</p>
@@ -61,7 +62,9 @@ const DashboardView = (props) => {
                     </tr>
                     {topSell.slice(0, 10).map(p => {
                         return (<tr>
-                            <td>{p.name}</td>
+                            <td>
+                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal" }}>{p.name}</Link>
+                            </td>
                             <td>{p.gender}</td>
                             <td>{p.category}</td>
                             <td>{p.sales.total}</td>
@@ -81,7 +84,9 @@ const DashboardView = (props) => {
                     </tr>
                     {topProfit.slice(0, 10).map(p => {
                         return (<tr>
-                            <td>{p.name}</td>
+                            <td>
+                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal" }}>{p.name}</Link>
+                            </td>
                             <td>{p.gender}</td>
                             <td>{p.category}</td>
                             <td>{p.sales.total}</td>

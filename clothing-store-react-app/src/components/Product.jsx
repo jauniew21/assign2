@@ -24,8 +24,8 @@ const Product = (props) => {
         <div className="py-2">
             <p>{breadcrumb}</p>
         </div>
-        <div className="flex">
-            <div>
+        <div className="flex gap-5">
+            <div className="flex flex-col gap-2">
                 <img src={placeholder} alt="placeholder image" className='size-72' />
                 <div className="flex">
                     <img src={placeholder} alt="placeholder image" className='size-36' />
@@ -33,18 +33,18 @@ const Product = (props) => {
                 </div>
             </div>
 
-            <div>
+            <div className="flex flex-col">
                 <p>{thisProduct?.name}</p>
                 <p>Price: ${thisProduct?.price.toFixed(2)}</p>
                 <p className="text-left">{thisProduct?.description}</p>
 
-                <div className="flex gap-2 justify-center">
+                {/* <div className="flex gap-2 justify-center">
                     {thisProduct?.sizes.map(s => <div>
                         <button className="w-12 h-12 flex justify-center items-center border rounded">{s}</button>
                     </div>)}
-                </div>
-                <div className="flex gap-2 justify-center">
-                    {thisProduct?.color.map(c => <div>
+                </div> */}
+                <div className="">
+                    {thisProduct?.color.map(c => <div className="flex justify-center">
                         <button style={{ backgroundColor: c.hex }} className="w-12 h-12"></button>
                     </div>)}
                 </div>
