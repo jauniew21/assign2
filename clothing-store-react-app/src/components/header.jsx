@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
+import AboutView from './AboutView.jsx'
+import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext.jsx';
 
 const Header = (props) => {
@@ -19,7 +20,7 @@ const Header = (props) => {
             <Link to="/women" gender={true}>Women</Link>
             <Link to="/men" gender={false}>Men</Link>
             <Link to="/browse">Browse</Link>
-            <Link to="/about">About</Link>
+            <AboutView />
             <Link to="/dashboard"
             className={`bg-none transition-colors duration-200 
             ${props.isLoggedIn ? 'hidden' : ''}`}>
