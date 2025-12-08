@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -24,9 +25,9 @@ const AboutView = (props) => {
     return (
         // Basic Material UI Modal: https://mui.com/material-ui/react-modal/
         <div>
-            <button onClick={handleOpen}
+            <Link onClick={handleOpen}
             className='border-none bg-transparent text-blue-500 font-semibold py-2 px-4 border border-blue-500 rounded'>
-                About</button>
+                About</Link>
             <Modal
                 open={open}
                 onClose={handleClose}
