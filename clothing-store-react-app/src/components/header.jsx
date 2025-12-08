@@ -4,16 +4,6 @@ import { CartContext } from './CartContext.jsx';
 
 const Header = (props) => {
   const cart = useContext(CartContext);
-  const [logInOut, setLogInOut] = useState('Admin Login');
-
-  const handleLogChange = () => {
-    if (props.isLoggedIn) {
-      setLogInOut('Logout');
-    } else {
-      setLogInOut('Admin Login');
-    }
-    console.log(props.isLoggedIn)
-  }
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-800/50 backdrop-blur-md border-b border-white/10">
@@ -38,7 +28,8 @@ const Header = (props) => {
 
           <div className='flex space-x-3'>
             {props.isLoggedIn ? <Link to="/login">Admin Login</Link> 
-            : <Link to="/login">Logout</Link> }
+            : <button onClick={props.handleLogIn}
+            className='text-red-500'>Logout</button> }
 
             <Link to="/cart" className='self-center'>
               Cart <span>({cart.cart.length})</span>
