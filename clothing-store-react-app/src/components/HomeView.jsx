@@ -5,7 +5,7 @@ import AddItemButton from './AddItemButton';
 const HomeView = (props) => {
     
     // DaisyUI carousel: https://daisyui.com/components/carousel/?lang=en#slide1
-    return(<div>
+    return(<div className='pt-16'>
 
         <div className="w-full h-28 overflow-hidden pb-10">
             <img
