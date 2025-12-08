@@ -61,6 +61,7 @@ const BrowseView = (props) => {
     }, [selected]);
 
     return (<div className='pt-16'>
+        <div>Sort: </div>
         <select
             onChange={(e) => setSort(e.target.value)}
             className="px-3 py-2 rounded border bg-white">
@@ -79,51 +80,77 @@ const BrowseView = (props) => {
             {cat}</button>)}
 
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
-            <p>Gender</p>
-            {gender_opt.map(g => {
-                const active = selected.includes(g);
+            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                <input type="checkbox" />
+                <div className="collapse-title font-semibold">Gender</div>
+                <div className="collapse-content text-sm">
+                    {gender_opt.map(g => {
+                        const active = selected.includes(g);
 
-                return (
-                    <button onClick={() => toggleSelected(g)}
-                        className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                        {g}</button>)
-            }
-            )}
+                        return (
+                            <button onClick={() => toggleSelected(g)}
+                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                                {g}</button>)
+                    })}
+                </div>
+            </div>
 
-            <p>Category</p>
-            {category_opt.map(c => {
-                const active = selected.includes(c);
+            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                <input type="checkbox" />
+                <div className="collapse-title font-semibold">Category</div>
+                <div className="collapse-content text-sm">
+                    {category_opt.map(c => {
+                    const active = selected.includes(c);
 
-                return (
-                    <button onClick={() => toggleSelected(c)}
-                        className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                        {c}</button>)
-            }
-            )}
+                    return (
+                        <button onClick={() => toggleSelected(c)}
+                            className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                            {c}</button>)
+                    })}
+                </div>
+            </div>
 
-            <p>Sizes</p>
-            {size_opt.map(s => {
-                const active = selected.includes(s);
+            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                <input type="checkbox" />
+                <div className="collapse-title font-semibold">Sizes</div>
+                <div className="collapse-content text-sm">
+                    {size_opt.map(s => {
+                        const active = selected.includes(s);
 
-                return (
-                    <button onClick={() => toggleSelected(s)}
-                        className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                        {s}</button>
-                )
-            }
-            )}
+                        return (
+                            <button onClick={() => toggleSelected(s)}
+                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                                {s}</button>
+                        )
+                    })}
+                </div>
+            </div>
+            
+            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                <input type="checkbox" />
+                <div className="collapse-title font-semibold">Colors</div>
+                <div className="collapse-content text-sm">
+                    {color_opt.map(c => {
+                        const active = selected.includes(c);
 
-            <p>Colors</p>
-            {color_opt.map(c => {
-                const active = selected.includes(c);
+                        return (
+                            <button onClick={() => toggleSelected(c.name)}
+                                style={{ backgroundColor: c.hex }}
+                                className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
+                            </button>)
+                    })}
+                    {/* {color_opt.map(c => {
+                        const active = selected.includes(c);
 
-                return (
-                    <button onClick={() => toggleSelected(c.name)}
-                        style={{ backgroundColor: c.hex }}
-                        className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
-                    </button>)
-            }
-            )}
+                        return (
+                            <button onClick={() => toggleSelected(c.name)}
+                            style={{ backgroundColor: c.hex }}
+                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                                {c.name}</button>
+                        )
+                    })} */}
+                </div>
+            </div>
         </nav>
 
         <div className="pl-60 pt-16">
