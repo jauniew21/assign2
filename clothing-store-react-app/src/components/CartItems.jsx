@@ -6,13 +6,15 @@ const CartItems = (props) => {
     const { cart, setCart } = useContext(CartContext)
 
     const removeItem = (id) => {
-        let c = cart.find(c => c.id === id)
-        if (c) {
-            const newCart = [...cart]
-            newCart.pop(c)
-            setCart(newCart)
+        const item = cart.find(c => c.id === id)
+        if (!item) {
+            alert("Item not found in cart")
+            return
         }
-        alert("Removed item: " + c.name)
+        const newCart = cart.filter(c => c.id !== id)
+        setCart(newCart)
+
+        alert("Removed item: " + item.name)
     }
 
     if (cart.length == 0) {
@@ -40,10 +42,10 @@ const CartItems = (props) => {
                             <img src={placeholder} alt="placeholder image" className='h-35 w-35' />
                             <p>{c.name}</p>
                             <button style={{ backgroundColor: c.color[0].hex }} className="w-12 h-12"></button>
-                            <p>*size*{c.size}</p>
+                            <p>{c.size}</p>
                             <p>${c.price.toFixed(2)}</p>
                             <p>{c.quantity}</p>
-                            <p>${(c.price * c.quantity)}</p>
+                            <p>${(c.price * c.quantity).toFixed(2)}</p>
                         </li>
                     )}
                 </ul>

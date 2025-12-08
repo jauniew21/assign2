@@ -48,11 +48,10 @@ const DashboardView = (props) => {
 
 
     return (<div>
-        <p>Sales Dashboard</p>
-        <p>poopyhead</p>
-        <div className='grid grid-flow-row grid-cols-2 grid-auto-rows'>
+        <p className='font-bold'>Sales Dashboard</p>
+        <div className='grid grid-flow-row grid-cols-2 grid-auto-rows gap-y-8'>
             <div>
-                <p>Top 10 Selling Products</p>
+                <p className='font-bold'>Top 10 Selling Products</p>
                 <table>
                     <tr>
                         <th>Product Name</th>
@@ -71,7 +70,7 @@ const DashboardView = (props) => {
                 </table>
             </div>
             <div>
-                <p>Top 10 Profitable Products</p>
+                <p className='font-bold'>Top 10 Profitable Products</p>
                 <table>
                     <tr>
                         <th>Product Name</th>
@@ -92,37 +91,42 @@ const DashboardView = (props) => {
                 </table>
             </div>
             <div className=''>
-                <p>Sales + Profit by Category</p>
-                <table>
-                    <tr>
-                        <th>Category</th>
-                        <th>Sales $</th>
-                        <th>Profit $</th>
-                    </tr>
-                    {sortedCategory.map((p) => (
-                        (<tr key={p.category}>
-                            <td>{p.category}</td>
-                            <td>{p.totalSales}</td>
-                            <td>${p.totalProfit.toFixed(2)}</td>
-                        </tr>)
-                    ))}
-                </table>
+                <p className='font-bold'>Sales + Profit by Category</p>
+                <div className='justify-center'>
+                    <table className=''>
+                        <tr>
+                            <th>Category</th>
+                            <th>Sales $</th>
+                            <th>Profit $</th>
+                        </tr>
+                        {sortedCategory.map((p) => (
+                            (<tr key={p.category}>
+                                <td>{p.category}</td>
+                                <td>{p.totalSales}</td>
+                                <td>${p.totalProfit.toFixed(2)}</td>
+                            </tr>)
+                        ))}
+                    </table>
+                </div>
+
             </div>
-            <div>
-                <p>Sales Numbers by Gender</p>
-                <PieChart series={[
-                    { data: genderSalesData }
-                ]}
-                    width={200}
-                    height={200} />
-            </div>
-            <div>
-                <p>Sales Numbers by Category</p>
-                <PieChart series={[
-                    { data: categoryPie }
-                ]}
-                    width={200}
-                    height={200} />
+            <div className='flex flex-row'>
+                <div className=''>
+                    <p className='font-bold'>Sales Numbers by Gender</p>
+                    <div className=''><PieChart series={[
+                        { data: genderSalesData }
+                    ]}
+                        width={200}
+                        height={200} /></div>
+                </div>
+                <div>
+                    <p className='font-bold'>Sales Numbers by Category</p>
+                    <PieChart series={[
+                        { data: categoryPie }
+                    ]}
+                        width={200}
+                        height={200} />
+                </div>
             </div>
         </div>
     </div>)

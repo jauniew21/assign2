@@ -19,19 +19,6 @@ const Product = (props) => {
         thisProduct?.category + " > " + thisProduct?.name
 
     const { cart, setCart } = useContext(CartContext)
-    
-    const addItem = () => {
-        let c = cart.find(c => c.id === thisProduct.id)
-        if (!c) {
-            const newCart = [...cart]
-            newCart.push(thisProduct)
-            setCart(newCart)
-            alert("Added item: " + thisProduct.name)
-        }
-        else {
-            alert("Added item again: " + c.name)
-        }
-    }
 
     return (<div className="pt-16">
         <div className="py-2">
@@ -50,19 +37,20 @@ const Product = (props) => {
                 <p>{thisProduct?.name}</p>
                 <p>Price: ${thisProduct?.price.toFixed(2)}</p>
                 <p className="text-left">{thisProduct?.description}</p>
-                <label for="quantity">Quantity:</label>
-                <input type="number" name="quantity" min="1"/>
+
                 <div className="flex gap-2 justify-center">
-                    {thisProduct.sizes.map(s => <div>
+                    {thisProduct?.sizes.map(s => <div>
                         <button className="w-12 h-12 flex justify-center items-center border rounded">{s}</button>
                     </div>)}
                 </div>
                 <div className="flex gap-2 justify-center">
-                    {thisProduct.color.map(c => <div>
-                        <button style={{backgroundColor: c.hex}} className="w-12 h-12"></button>
+                    {thisProduct?.color.map(c => <div>
+                        <button style={{ backgroundColor: c.hex }} className="w-12 h-12"></button>
                     </div>)}
                 </div>
-                <button onClick={addItem}>+ Add to Cart</button>
+                {thisProduct && (<AddItemButton prod={thisProduct} showQuantity={true} />)}
+
+
                 {props.isLoggedIn ? '' : <AdminProductView product={thisProduct} />}
             </div>
         </div>

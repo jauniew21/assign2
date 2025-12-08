@@ -31,7 +31,7 @@ function App() {
   return (
     <main>
       <CartContextProvider products={products}>
-        <Header isLoggedIn={isLoggedIn} handleLogIn={() => {setIsLoggedIn(!isLoggedIn)}}/>
+        <Header isLoggedIn={isLoggedIn} handleLogIn={() => { setIsLoggedIn(!isLoggedIn) }} />
         <Routes>
           <Route path="/" element={<HomeView products={products} />} />
           <Route path="/women" element={<WomenView products={products} gender={true} />} />
@@ -41,10 +41,10 @@ function App() {
           <Route path="/cart" element={<ShoppingCartView products={products} />} />
           <Route path="/product/:name" element={<Product products={products} isLoggedIn={isLoggedIn} />} />
           <Route path="/dashboard" element={<DashboardView products={products} />} />
-          <Route path="/login" element={<LoginView isLoggedIn={isLoggedIn} handleLogIn={() => {setIsLoggedIn(!isLoggedIn)}}/>} />
+          <Route path="/login" element={<LoginView isLoggedIn={isLoggedIn} handleLogIn={() => { setIsLoggedIn(!isLoggedIn) }} />} />
         </Routes>
-        {isLoggedIn ? '' : <Footer />}
       </CartContextProvider>
+      {isLoggedIn ? '' : <Footer />}
     </main>
   )
 }
