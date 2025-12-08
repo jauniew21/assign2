@@ -14,6 +14,15 @@ const WomenView = (props) => {
     }
 
     return (<div className='pt-16'>
+
+        <div className="w-full h-28 overflow-hidden pb-10">
+            <img
+                src={placeholder}
+                alt="placeholder"
+                className="w-full h-full object-cover"
+            />
+        </div>
+
         <ul className="grid grid-cols-4 gap-6">
             {womenEntries.map(prod =>
                 <li key={prod.id} className='flex flex-col items-center'>
