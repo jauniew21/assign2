@@ -3,7 +3,7 @@ import placeholder from '../assets/shop-placeholder.png';
 const HomeView = (props) => {
     
     // DaisyUI carousel: https://daisyui.com/components/carousel/?lang=en#slide1
-    return(<div className="carousel w-full">
+    return(<div className="carousel size-100">
         <div id="slide1" className="carousel-item relative w-full group">
             <img
             src={placeholder}
