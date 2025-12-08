@@ -35,7 +35,7 @@ const BrowseView = (props) => {
             const filtered = props.products.filter(prod =>
                 selected.includes(prod.gender) ||
                 selected.includes(prod.category) ||
-                selected.includes(prod.color.name) ||
+                prod.color.some(color => selected.includes(color.name)) ||
                 prod.sizes.some(size => selected.includes(size))
             )
             setSelEntries(filtered);
