@@ -70,6 +70,14 @@ const BrowseView = (props) => {
             <option value="category">Category</option>
         </select>
 
+        <div>Results: </div> 
+        <button 
+        onClick={() => {setSelected([])}}
+        className='bg-red-600'>Clear All</button>
+        {selected.map(cat => 
+            <button onClick={() => toggleSelected(cat)}>
+            {cat}</button>)}
+
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
             <p>Gender</p>
             {gender_opt.map(g => {
@@ -94,7 +102,6 @@ const BrowseView = (props) => {
             )}
 
             <p>Sizes</p>
-            {/* fix sizing */}
             {size_opt.map(s => {
                 const active = selected.includes(s);
 
@@ -107,7 +114,6 @@ const BrowseView = (props) => {
             )}
 
             <p>Colors</p>
-            {/* fix color hex stuff */}
             {color_opt.map(c => {
                 const active = selected.includes(c);
 
