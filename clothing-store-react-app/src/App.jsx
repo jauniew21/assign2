@@ -10,6 +10,7 @@ import WomenView from './components/WomenView.jsx'
 import BrowseView from './components/BrowseView.jsx'
 import AboutView from './components/AboutView.jsx'
 import DashboardView from './components/DashboardView.jsx'
+import LoginView from './components/LoginView.jsx'
 import Product from './components/Product.jsx'
 import CartContextProvider from './components/CartContext.jsx'
 import Footer from './components/Footer.jsx'
@@ -40,6 +41,7 @@ function App() {
           <Route path="/cart" element={<ShoppingCartView products={products} />} />
           <Route path="/product/:name" element={<Product products={products} isLoggedIn={isLoggedIn} />} />
           <Route path="/dashboard" element={<DashboardView products={products} />} />
+          <Route path="/login" element={<LoginView isLoggedIn={isLoggedIn} handleLogIn={() => {setIsLoggedIn(!isLoggedIn)}}/>} />
         </Routes>
         {isLoggedIn ? '' : <Footer />}
       </CartContextProvider>

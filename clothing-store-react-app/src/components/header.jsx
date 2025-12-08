@@ -7,8 +7,6 @@ const Header = (props) => {
   const [logInOut, setLogInOut] = useState('Admin Login');
 
   const handleLogChange = () => {
-    props.handleLogIn()
-
     if (props.isLoggedIn) {
       setLogInOut('Logout');
     } else {
@@ -39,10 +37,8 @@ const Header = (props) => {
           </nav>
 
           <div className='flex space-x-3'>
-            <button onClick={handleLogChange}
-            className={`bg-none transition-colors duration-200 
-            ${props.isLoggedIn ? 'text-blue-600' : 'text-red-600'}`}>
-              {logInOut}</button>
+            {props.isLoggedIn ? <Link to="/login">Admin Login</Link> 
+            : <Link to="/login">Logout</Link> }
 
             <Link to="/cart" className='self-center'>
               Cart <span>({cart.cart.length})</span>
