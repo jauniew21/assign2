@@ -11,15 +11,11 @@ const BrowseView = (props) => {
 
     const gender_opt = [...new Set(props.products.map(prod => prod.gender))]
     const category_opt = [...new Set(props.products.map(prod => prod.category))]
-    let color_opt = [...new Set(props.products.flatMap(prod => prod.color))];
+    const color_opt = [...new Map(props.products.flatMap(prod => prod.color)
+        .map(color => [color.name, color])).values()];
     const size_opt = [...new Set(props.products.flatMap(prod => prod.sizes))]
 
-    const u_color = [...new Set(color_opt.flatMap(color => color.name))];
-    const u_hex = [...new Set(color_opt.flatMap(color => color.hex))];
-    color_opt = u_color.map((name, i) => ({
-        name,
-        hex: u_hex[i]
-    }))
+    console.log(color_opt)
 
     const sortedProducts = [...selEntries].sort((a, b) => {
         if (sort === "name") return a.name.localeCompare(b.name);
