@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const AboutView = (props) => {
     const [open, setOpen] = useState(false);
@@ -34,20 +36,43 @@ const AboutView = (props) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-            <Box sx={style}>
+            <Box sx={{ ...style, position: 'relative' }}>
+                <IconButton
+                    onClick={handleClose}
+                    sx={{
+                        backgroundColor: 'white',
+                        position: 'absolute',
+                        top: 8,
+                        right: 8,
+                    }}
+                    >
+                    <CloseIcon />
+                </IconButton>
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                 About Us
                 </Typography>
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     We are Jaunie and Michelle and this our second assignment in COMP 4513 - Advanced Web Development. We've made a basic store page using React and Tailwind. 
-                    There are several views, both immediately visible (see header) and hidden (admin only).<br />
+                    There are several views, both immediately visible (see header) and hidden (admin only). The user is assumed an Admin for practicality reasons. <br />
+                    <br />
+                    If you log yourself out, email: 123@gmail.com, and password: 123. Yes, I did do a Cryptography class, thanks for asking.
+                    <br /> <br />
                     
                     MaterialUI was used to create all modals (including this one) and charts. And DaisyUI was used to create the carousel on the Home Page. <br />
+                    <br />
 
                     Github Repo: https://github.com/jauniew21/assign2/tree/main
                 </Typography>
-            </Box>
-            </Modal>
+                <div className="flex justify-end mt-6">
+                <button
+                    onClick={handleClose}
+                    className="text-red-500 font-semibold"
+                >
+                    Close
+                </button>
+                </div>
+                            </Box>
+                            </Modal>
         </div>)
     }
 
