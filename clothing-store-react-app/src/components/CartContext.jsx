@@ -8,12 +8,14 @@ const CartContextProvider = (props) => {
         return saved ? JSON.parse(saved) : [];
     });
 
+    const [quantity, setQuantity] = useState(1)
+
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart))
     }, [cart])
 
     return (
-        <CartContext.Provider value={{ cart, setCart }}>
+        <CartContext.Provider value={{ cart, setCart, quantity, setQuantity }}>
             {props.children}
         </CartContext.Provider>
     )
