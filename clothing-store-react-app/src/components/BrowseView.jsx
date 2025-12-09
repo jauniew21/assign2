@@ -169,7 +169,7 @@ const BrowseView = (props) => {
             </div>
             </nav>
 
-            <div className="pl-60 pt-16">
+            <div className="flex pl-60 pt-10">
                 <ul className="grid grid-cols-3 gap-6">
                     {sortedProducts.length === 0 ? (
                         <p className="text-center text-gray-500 mt-8">
