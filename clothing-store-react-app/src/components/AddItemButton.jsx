@@ -2,26 +2,25 @@ import { useContext, useState } from 'react'
 import { CartContext } from './CartContext'
 
 const AddItemButton = ({ prod, showQuantity = false }) => {
-    const { cart, setCart } = useContext(CartContext)
-    const [quantity, setQuantity] = useState(1)
-    const [selSize, setSelSize] = useState(prod?.sizes?.[0] || null)
+    const { cart, setCart, quantity, setQuantity } = useContext(CartContext)
+    const [size, setSize] = useState(prod?.sizes?.[0] || null)
 
     const addItem = () => {
         const qty = showQuantity ? Number(quantity) : 1
 
-        const existing = cart.find(item => item.id === prod.id && item.size === selSize)
+        const existing = cart.find(item => item.id === prod.id && item.size === size)
 
         if (existing) {
             const newCart = cart.map(item =>
-                item.id === prod.id && item.size === selSize
+                item.id === prod.id && item.size === size
                     ? { ...item, quantity: item.quantity + qty }
                     : item
             )
             setCart(newCart)
         } else {
-            setCart([...cart, { ...prod, quantity: qty, size: selSize }])
+            setCart([...cart, { ...prod, quantity: qty, size: size }])
         }
-        alert(`Added ${qty} x ${prod.name} ${selSize} to cart`)
+        alert(`Added ${qty} x ${prod.name} ${size} to cart`)
     }
 
     return (
@@ -30,10 +29,10 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
                 <div className=''>
                     <div className=''>
                         {prod.sizes.map((size, i) => (
-                            <button key={i} type='button' className='w-12 h-12 m-0.5' style={{backgroundColor: "#505050"}} onClick={() => setSelSize(size)}>{size}</button>
+                            <button key={i} type='button' className='w-12 h-12 m-0.5' style={{ backgroundColor: "#505050" }} onClick={() => setSize(size)}>{size}</button>
                         ))}
                     </div>
-                    <button style={{backgroundColor: "#303030"}} onClick={addItem}>Add to Cart</button>
+                    <button style={{ backgroundColor: "#303030" }} onClick={addItem}>Add to Cart</button>
                 </div>
 
             )}
@@ -42,7 +41,7 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
                     <div className='flex flex-col gap-2'>
                         <div className='flex justify-center gap-1 mt-2'>
                             {prod.sizes.map((size, i) => (
-                                <button key={i} type='button' className='w-12 h-12' onClick={() => setSelSize(size)}>{size}</button>
+                                <button key={i} type='button' className='w-12 h-12' onClick={() => setSize(size)}>{size}</button>
                             ))}
                         </div>
 
