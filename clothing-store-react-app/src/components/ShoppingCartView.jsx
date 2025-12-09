@@ -12,9 +12,9 @@ const ShoppingCartView = (props) => {
     const [dest, setDest] = useState("canada")
 
     return (
-        <div className='fixed left-0 top-16 w-screen py-5 px-80' >
+        <div className='mt-16' style={{padding: "0"}}>
             <div className='flex flex-col'>
-                <p className="font-bold">Shopping Cart</p>
+                <p className="font-bold text-xl">Shopping Cart</p>
                 <div className="flex flex-col py-5">
                     <CartItems />
                 </div>

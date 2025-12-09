@@ -49,92 +49,95 @@ const DashboardView = (props) => {
 
 
     return (<div>
-        <p className='font-bold pt-16'>Sales Dashboard</p>
+        <p className='font-bold pt-16 text-xl'>Sales Dashboard</p>
         <div className='grid grid-flow-row grid-cols-2 grid-auto-rows gap-y-8'>
-            <div>
-                <p className='font-bold'>Top 10 Selling Products</p>
-                <table>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Gender</th>
-                        <th>Category</th>
-                        <th>Total Sales (#)</th>
+            <div className='grid justify-center'>
+                <p className='font-bold pb-2'>Top 10 Selling Products</p>
+                <table className='table-fixed border-collapse border'>
+                    <tr className='border'>
+                        <th className='border px-2'>Product Name</th>
+                        <th className='border px-2'>Gender</th>
+                        <th className='border '>Category</th>
+                        <th className='px-2'>Total Sales (#)</th>
                     </tr>
                     {topSell.slice(0, 10).map(p => {
-                        return (<tr>
-                            <td>
-                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal", textDecoration: "underline" }} >{p.name}</Link>
+                        return (<tr className='border'>
+                            <td className='border px-2'>
+                                <Link to={`/product/${p.name}`} key={p.name} style={{ fontWeight: "normal" }} >{p.name}</Link>
                             </td>
-                            <td>{p.gender}</td>
-                            <td>{p.category}</td>
-                            <td>{p.sales.total}</td>
+                            <td className='border px-2'>{p.gender}</td>
+                            <td className='border px-2'>{p.category}</td>
+                            <td className='border'>{p.sales.total}</td>
                         </tr>)
                     })}
                 </table>
             </div>
-            <div>
-                <p className='font-bold'>Top 10 Profitable Products</p>
-                <table>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Gender</th>
-                        <th>Category</th>
-                        <th>Total Sales (#)</th>
+            <div className='grid justify-center'>
+                <p className='font-bold pb-2'>Top 10 Profitable Products</p>
+                <table className='border border-collapse table-fixed'>
+                    <tr className='border'>
+                        <th className='border' >Product Name</th>
+                        <th className='border'>Gender</th>
+                        <th className='border'>Category</th>
+                        <th className='border px-2'>Total Sales (#)</th>
                         <th>Profit ($)</th>
                     </tr>
                     {topProfit.slice(0, 10).map(p => {
-                        return (<tr>
-                            <td>
-                                <Link to={`/product/${p.name}`} key={p.name} style={{ color: "white", fontWeight: "normal", textDecoration: "underline" }}>{p.name}</Link>
+                        return (<tr className='border'>
+                            <td className='border px-2'>
+                                <Link to={`/product/${p.name}`} key={p.name} style={{ fontWeight: "normal" }}>{p.name}</Link>
                             </td>
-                            <td>{p.gender}</td>
-                            <td>{p.category}</td>
-                            <td>{p.sales.total}</td>
-                            <td>${(p.sales.total * p.price).toFixed(2)}</td>
+                            <td className='border px-2'>{p.gender}</td>
+                            <td className='border px-2'>{p.category}</td>
+                            <td className='border'>{p.sales.total}</td>
+                            <td className='border px-2'>${(p.sales.total * p.price).toFixed(2)}</td>
                         </tr>)
                     })}
                 </table>
             </div>
-            <div className=''>
-                <p className='font-bold'>Sales + Profit by Category</p>
-                <div className='justify-center'>
-                    <table className=''>
-                        <tr>
-                            <th>Category</th>
-                            <th>Sales $</th>
-                            <th>Profit $</th>
-                        </tr>
-                        {sortedCategory.map((p) => (
-                            (<tr key={p.category}>
-                                <td>{p.category}</td>
-                                <td>{p.totalSales}</td>
-                                <td>${p.totalProfit.toFixed(2)}</td>
-                            </tr>)
-                        ))}
-                    </table>
-                </div>
+            <div className='grid grid-cols-3 col-span-2'>
+                <div className='grid justify-center'>
+                    <p className='font-bold'>Sales + Profit by Category</p>
+                    <div className=''>
+                        <table className='border table-fixed'>
+                            <tr className='border'>
+                                <th className='border'>Category</th>
+                                <th className='border px-2'>Sales $</th>
+                                <th className='border'>Profit $</th>
+                            </tr>
+                            {sortedCategory.map((p) => (
+                                (<tr key={p.category} className='border'>
+                                    <td className='border px-2'>{p.category}</td>
+                                    <td className='border'>{p.totalSales}</td>
+                                    <td className='px-2'>${p.totalProfit.toFixed(2)}</td>
+                                </tr>)
+                            ))}
+                        </table>
+                    </div>
 
-            </div>
-            <div className='flex flex-row'>
-                <div className=''>
+                </div>
+                <div className='grid justify-center'>
                     <p className='font-bold'>Sales Numbers by Gender</p>
-                    <div className=''><PieChart series={[
-                        { data: genderSalesData }
-                    ]}
-                        width={200}
-                        height={200} /></div>
+                    <div className='bg-white pt-10 mb-10 mr-5'>
+                        <PieChart series={[
+                            { data: genderSalesData }
+                        ]}
+                            width={200}
+                            height={200} /></div>
                 </div>
                 <div>
                     <p className='font-bold'>Sales Numbers by Category</p>
-                    <PieChart series={[
-                        { data: categoryPie }
-                    ]}
-                        width={200}
-                        height={200} />
+                    <div className='bg-white'>
+                        <PieChart series={[
+                            { data: categoryPie }
+                        ]}
+                            width={200}
+                            height={200} />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>)
+    </div >)
 }
 
 export default DashboardView;
