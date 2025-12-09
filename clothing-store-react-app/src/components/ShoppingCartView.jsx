@@ -18,13 +18,13 @@ const ShoppingCartView = (props) => {
                 <div className="flex flex-col p-5">
                     <CartItems />
                 </div>
-                <div className='flex flex-row justify-around pt-5 pb-10'>
+                <div className='flex flex-row justify-around pb-10'>
                     <div>
-                        <p className='font-bold'>Shipping</p>
+                        <p className='font-bold text-lg'>Shipping</p>
                         <Shipping ship={ship} setShip={setShip} dest={dest} setDest={setDest} />
                     </div>
                     <div className='w-80'>
-                        <p className='font-bold'>Summary</p>
+                        <p className='font-bold text-lg'>Summary</p>
                         <CartSummary ship={ship} dest={dest} />
                     </div>
                 </div>

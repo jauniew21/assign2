@@ -3,9 +3,13 @@ import { CartContext } from './CartContext'
 
 const AddItemButton = ({ prod, showQuantity = false }) => {
     const { cart, setCart, quantity, setQuantity } = useContext(CartContext)
-    const [size, setSize] = useState(prod?.sizes?.[0] || null)
+    const [size, setSize] = useState(null)
 
     const addItem = () => {
+        if (!size) {
+            alert("Please select a size")
+            return;
+        }
         const qty = showQuantity ? Number(quantity) : 1
 
         const existing = cart.find(item => item.id === prod.id && item.size === size)
@@ -39,7 +43,7 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
             {showQuantity && prod.sizes && (
                 <div>
                     <div className='flex flex-col gap-2'>
-                        <div className='flex justify-center gap-1 mt-2'>
+                        <div className='flex justify-center gap-1 my-2'>
                             {prod.sizes.map((size, i) => (
                                 <button key={i} type='button' className='w-12 h-12' style={{display: "flex", justifyContent: "center"}} onClick={() => setSize(size)}>{size}</button>
                             ))}
@@ -59,8 +63,7 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
                     </div>
                     <button className="mb-2" style={{backgroundColor: "#646cff"}} onClick={addItem}>Add to Cart</button>
                 </div>
-            )
-            }
+            )}
         </div>
     )
 }
