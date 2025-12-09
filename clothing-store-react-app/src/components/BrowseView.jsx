@@ -157,13 +157,10 @@ const BrowseView = (props) => {
                                     ${active ? "bg-base-200 ring-2 ring-red-700" : "hover:bg-base-200"}
                                 `}
                             >
-                                {/* Color swatch */}
                                 <span
                                     className="w-5 h-5 rounded border"
                                     style={{ backgroundColor: c.hex }}
                                 />
-
-                                {/* Color name */}
                                 <span className="capitalize">{c.name}</span>
                             </button>
                         );
