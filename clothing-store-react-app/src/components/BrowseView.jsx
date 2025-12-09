@@ -27,15 +27,30 @@ const BrowseView = (props) => {
     const updateProducts = () => {
         if (selected.length === 0) {
             setSelEntries(props.products)
-        } else {
-            const filtered = props.products.filter(prod =>
-                selected.includes(prod.gender) ||
-                selected.includes(prod.category) ||
-                prod.color.some(color => selected.includes(color.name)) ||
-                prod.sizes.some(size => selected.includes(size))
-            )
-            setSelEntries(filtered);
+            return;
         }
+
+        const filtered = props.products.filter(prod => {
+            const genderMatch =
+                !gender_opt.some(g => selected.includes(g)) ||
+                selected.includes(prod.gender);
+
+            const categoryMatch =
+                !category_opt.some(c => selected.includes(c)) ||
+                selected.includes(prod.category);
+
+            const colorMatch =
+                !color_opt.some(c => selected.includes(c.name)) ||
+                prod.color.some(color => selected.includes(color.name));
+
+            const sizeMatch =
+                !size_opt.some(s => selected.includes(s)) ||
+                prod.sizes.some(size => selected.includes(size));
+
+            return genderMatch && categoryMatch && colorMatch && sizeMatch;
+        });
+
+        setSelEntries(filtered);
     }
 
     const toggleSelected = (param) => {
@@ -74,100 +89,109 @@ const BrowseView = (props) => {
                 onClick={() => { setSelected([]) }}
                 className='bg-red-600 ml-5 mt-2'>Clear All</button>
             {selected.map(cat =>
-                <button onClick={() => toggleSelected(cat)}>
+                <button onClick={() => toggleSelected(cat)} className='capitalize'>
                     {cat}</button>)}
         </div>
 
-        <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
-            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
-                <input type="checkbox" />
-                <div className="collapse-title font-semibold">Gender</div>
-                <div className="collapse-content text-sm">
-                    {gender_opt.map(g => {
-                        const active = selected.includes(g);
+        <div className='flex flex-col'>
+                <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50 overflow-y-auto">
+                <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                    <input type="checkbox" />
+                    <div className="collapse-title font-semibold">Gender</div>
+                    <div className="collapse-content text-sm">
+                        {gender_opt.map(g => {
+                            const active = selected.includes(g);
 
-                        return (
-                            <button onClick={() => toggleSelected(g)}
-                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                                {g}</button>)
-                    })}
+                            return (
+                                <button onClick={() => toggleSelected(g)}
+                                    className={`${active ? "text-red-700" : "bg-black text-white"} capitalize`}>
+                                    {g}</button>)
+                        })}
+                    </div>
                 </div>
-            </div>
 
-            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
-                <input type="checkbox" />
-                <div className="collapse-title font-semibold">Category</div>
-                <div className="collapse-content text-sm">
-                    {category_opt.map(c => {
-                        const active = selected.includes(c);
+                <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                    <input type="checkbox" />
+                    <div className="collapse-title font-semibold">Category</div>
+                    <div className="collapse-content text-sm">
+                        {category_opt.map(c => {
+                            const active = selected.includes(c);
 
-                        return (
-                            <button onClick={() => toggleSelected(c)}
-                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                                {c}</button>)
-                    })}
+                            return (
+                                <button onClick={() => toggleSelected(c)}
+                                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                                    {c}</button>)
+                        })}
+                    </div>
                 </div>
-            </div>
 
-            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
-                <input type="checkbox" />
-                <div className="collapse-title font-semibold">Sizes</div>
-                <div className="collapse-content text-sm">
-                    {size_opt.map(s => {
-                        const active = selected.includes(s);
+                <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                    <input type="checkbox" />
+                    <div className="collapse-title font-semibold">Sizes</div>
+                    <div className="collapse-content text-sm">
+                        {size_opt.map(s => {
+                            const active = selected.includes(s);
 
-                        return (
-                            <button onClick={() => toggleSelected(s)}
-                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                                {s}</button>
-                        )
-                    })}
+                            return (
+                                <button onClick={() => toggleSelected(s)}
+                                    className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                                    {s}</button>
+                            )
+                        })}
+                    </div>
                 </div>
-            </div>
 
-            <div className="collapse collapse-plus bg-base-100 border-base-300 border">
+                <div className="collapse collapse-plus bg-base-100 border-base-300 border">
                 <input type="checkbox" />
                 <div className="collapse-title font-semibold">Colors</div>
-                <div className="collapse-content text-sm">
+
+                <div className="collapse-content text-sm space-y-2">
                     {color_opt.map(c => {
-                        const active = selected.includes(c);
+                        const active = selected.includes(c.name);
 
                         return (
-                            <button onClick={() => toggleSelected(c.name)}
-                                style={{ backgroundColor: c.hex }}
-                                className={`${active ? "border border-red-700" : ""} w-12 h-12`}>
-                            </button>)
+                            <button
+                                key={c.name}
+                                onClick={() => toggleSelected(c.name)}
+                                className={`flex items-center gap-3 w-full px-2 py-1 rounded
+                                    ${active ? "bg-base-200 ring-2 ring-red-700" : "hover:bg-base-200"}
+                                `}
+                            >
+                                {/* Color swatch */}
+                                <span
+                                    className="w-5 h-5 rounded border"
+                                    style={{ backgroundColor: c.hex }}
+                                />
+
+                                {/* Color name */}
+                                <span className="capitalize">{c.name}</span>
+                            </button>
+                        );
                     })}
-                    {/* {color_opt.map(c => {
-                        const active = selected.includes(c);
-
-                        return (
-                            <button onClick={() => toggleSelected(c.name)}
-                            style={{ backgroundColor: c.hex }}
-                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                                {c.name}</button>
-                        )
-                    })} */}
                 </div>
             </div>
-        </nav>
+            </nav>
 
-        <div className="pl-60 pt-16">
-            <ul className="grid grid-cols-3 gap-6">
-                {sortedProducts.map(prod =>
-                    <li key={prod.id} className='flex flex-col items-center'>
-                        <div className='group relative'>
-                            <img key={prod.price + prod.id} src={placeholder} alt="placeholder image" className='size-48' />
-                            <div className="absolute bottom-1 right-1 invisible group-hover:visible">
-                                <AddItemButton prod={prod} />
+            <div className="pl-60 pt-16">
+                <ul className="grid grid-cols-3 gap-6">
+                    {sortedProducts.length === 0 ? (
+                        <p className="text-center text-gray-500 mt-8">
+                            No products match current filters.
+                        </p>
+                    ) : (sortedProducts.map(prod =>
+                        <li key={prod.id} className='flex flex-col items-center'>
+                            <div className='group relative'>
+                                <img key={prod.price + prod.id} src={placeholder} alt="placeholder image" className='size-48' />
+                                <div className="absolute bottom-1 right-1 invisible group-hover:visible">
+                                    <AddItemButton prod={prod} />
+                                </div>
+
                             </div>
-
-                        </div>
-                        <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
-                        <p key={prod.price - prod.id}>Price: ${prod.price.toFixed(2)}</p>
-
-                    </li>)}
-            </ul>
+                            <Link to={`/product/${prod.name}`} key={prod.name} className=''>{prod.name}</Link>
+                            <p key={prod.price - prod.id}>Price: ${prod.price.toFixed(2)}</p>
+                        </li>))}
+                </ul>
+            </div>
         </div>
     </div>)
 }
