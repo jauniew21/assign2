@@ -49,7 +49,7 @@ const CartItems = (props) => {
                             <p>{c.size}</p>
                             <p>${c.price.toFixed(2)}</p>
 
-                            <div className='flex flex-row justify-center gap-2 mb-2'>
+                            {/* <div className='flex flex-row justify-center gap-2 mb-2'>
                                 <button type="button" onClick={() => setQuantity(prev => Math.max(prev - 1, 1))} >
                                     -
                                 </button>
@@ -59,7 +59,8 @@ const CartItems = (props) => {
                                 <button type="button"
                                     onClick={() => setQuantity(prev => prev + 1)}>
                                     +</button>
-                            </div>
+                            </div> */}
+                            <p>{c.quantity}</p>
 
                             <p>${(c.price * c.quantity).toFixed(2)}</p>
                         </li>
