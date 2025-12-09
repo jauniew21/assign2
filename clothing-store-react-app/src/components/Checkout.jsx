@@ -11,7 +11,7 @@ const Checkout = () => {
     const checkout = () => {
         clearCart()
         // toaster message
-        alert("Checkout - purchased.")
+        alert("Purchase successful. Thank you for your order.")
     }
 
     return (
