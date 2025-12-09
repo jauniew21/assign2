@@ -2,6 +2,7 @@
 
 const Footer = (props) => {
     return (<footer className="pt-10">
+        <hr />
         <div className="flex ">
             <div>
                 We are Jaunie and Michelle and this our second assignment in COMP 4513 - Advanced Web Development. We've made a basic store page using React and Tailwind. 

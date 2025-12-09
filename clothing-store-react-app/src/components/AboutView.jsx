@@ -51,6 +51,7 @@ const AboutView = (props) => {
                 <Typography id="modal-modal-title" variant="h6" component="h2">
                 About Us
                 </Typography>
+                <hr />
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     We are Jaunie and Michelle and this our second assignment in COMP 4513 - Advanced Web Development. We've made a basic store page using React and Tailwind. 
                     There are several views, both immediately visible (see header) and hidden (admin only). The user is assumed an Admin for practicality reasons. <br />

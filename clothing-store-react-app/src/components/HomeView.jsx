@@ -59,6 +59,31 @@ const HomeView = (props) => {
 
         </div>
 
+        <div className='pt-16 flex flex-col items-center'>
+            <div className='font-bold text-lg mb-4'>Sections</div>
+            <ul className="grid grid-cols-2 gap-2 place-items-center">
+                <div>
+                    <Link to={'/women'}>
+                    <img src={placeholder} alt="placeholder" className='size-60' /></Link>
+                    <div>Women's Section</div>
+                </div>
+                <div>
+                    <Link to={'/men'}>
+                    <img src={placeholder} alt="placeholder" className='size-60' /></Link>
+                    <div>Men's Section</div>
+                </div>
+                <div>
+                    <Link to={'/browse'}>
+                    <img src={placeholder} alt="placeholder" className='size-60' /></Link>
+                    <div>All Clothing</div>
+                </div>
+                <div>
+                    <Link to={'/about'}>
+                    <img src={placeholder} alt="placeholder" className='size-60' /></Link>
+                    <div>About Us</div>
+                </div>
+            </ul>
+        </div>
     </div>)
 }
 
