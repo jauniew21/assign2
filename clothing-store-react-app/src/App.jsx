@@ -44,7 +44,7 @@ function App() {
           <Route path="/login" element={<LoginView isLoggedIn={isLoggedIn} handleLogIn={() => { setIsLoggedIn(!isLoggedIn) }} />} />
         </Routes>
       </CartContextProvider>
-      {isLoggedIn ? '' : <Footer />}
+      <Footer />
     </main>
   )
 }
