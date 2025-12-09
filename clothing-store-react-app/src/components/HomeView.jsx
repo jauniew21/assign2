@@ -64,12 +64,12 @@ const HomeView = (props) => {
             <div className='font-bold text-lg mb-4'>Sections</div>
             <ul className="grid grid-cols-2 gap-2 place-items-center">
                 <div>
-                    <Link to={'/women'}>
+                    <Link to={'/womens'}>
                     <img src={placeholder} alt="placeholder" className='size-60' /></Link>
                     <div>Women's Section</div>
                 </div>
                 <div>
-                    <Link to={'/men'}>
+                    <Link to={'/mens'}>
                     <img src={placeholder} alt="placeholder" className='size-60' /></Link>
                     <div>Men's Section</div>
                 </div>

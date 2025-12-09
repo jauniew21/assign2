@@ -32,7 +32,7 @@ const CartSummary = ({ ship, dest }) => {
         }
     }
     else if (dest == 'int') {
-        tax = 0.1
+        tax = 0.15
         if (ship == 'standard') {
             shipCost = 20
         }

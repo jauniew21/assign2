@@ -17,8 +17,8 @@ const Header = (props) => {
 
           <nav className="hidden sm:flex space-x-6">
             <Link to="/">Home</Link>
-            <Link to="/women" gender={true}>Women</Link>
-            <Link to="/men" gender={false}>Men</Link>
+            <Link to="/womens" gender={true}>Womens</Link>
+            <Link to="/mens" gender={false}>Mens</Link>
             <Link to="/browse">Browse</Link>
             <AboutView />
             <Link to="/dashboard"

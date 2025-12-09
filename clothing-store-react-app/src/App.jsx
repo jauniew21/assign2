@@ -34,8 +34,8 @@ function App() {
         <Header isLoggedIn={isLoggedIn} handleLogIn={() => { setIsLoggedIn(!isLoggedIn) }} />
         <Routes>
           <Route path="/" element={<HomeView products={products} />} />
-          <Route path="/women" element={<WomenView products={products} gender={true} />} />
-          <Route path="/men" element={<WomenView products={products} gender={false} />} />
+          <Route path="/womens" element={<WomenView products={products} gender={true} />} />
+          <Route path="/mens" element={<WomenView products={products} gender={false} />} />
           <Route path="/browse" element={<BrowseView products={products} />} />
           <Route path="/about" element={<AboutView />} />
           <Route path="/cart" element={<ShoppingCartView products={products} />} />
