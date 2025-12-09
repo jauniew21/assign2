@@ -43,65 +43,85 @@ const AdminProductView = (props) => {
     return (
         <div>
             <button onClick={toggleDrawer(true)}>Admin</button>
-            <Drawer open={open} onClose={toggleDrawer(false)}
-            className=''>
-                <p>Admin Info</p>
-                <p>{product?.name} Sales Information</p>
-                
-                {metrics.map(item => (
-                    <div key={item.label}>
-                        <p>{item.label}</p>
+            <Drawer
+                open={open}
+                onClose={toggleDrawer(false)}
+                PaperProps={{
+                    className: 'bg-black text-gray-100 w-[720px] p-6',
+                }}
+                >
+                <div className="mb-6">
+                    <h2 className="text-xl font-bold">Admin Info</h2>
+                    <p className="text-sm text-gray-400">
+                    {product?.name} — Sales Overview
+                    </p>
+                </div>
 
-                        <label>Domestic:</label>
-                        <input
-                        type="text"
-                        value={item.domestic.toFixed(2)}
-                        readOnly
-                        />
+                <div className="space-y-4">
+                    {metrics.map(item => (
+                    <div
+                        key={item.label}
+                        className="border border-gray-700 rounded-lg p-4"
+                    >
+                        <h3 className="font-semibold text-lg mb-3">
+                        {item.label}
+                        </h3>
 
-                        <label>International:</label>
-                        <input
-                        type="text"
-                        value={item.international.toFixed(2)}
-                        readOnly
-                        />
+                        <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div>
+                            <p className="text-yellow-400 font-medium">Domestic</p>
+                            <p className="mt-1">
+                            ${item.domestic.toFixed(2)}
+                            </p>
+                        </div>
 
-                        <label>Total:</label>
-                        <input
-                        type="text"
-                        value={item.total.toFixed(2)}
-                        readOnly
-                        />
+                        <div>
+                            <p className="text-blue-400 font-medium">International</p>
+                            <p className="mt-1">
+                            ${item.international.toFixed(2)}
+                            </p>
+                        </div>
+
+                        <div>
+                            <p className="text-red-400 font-medium">Total</p>
+                            <p className="mt-1">
+                            ${item.total.toFixed(2)}
+                            </p>
+                        </div>
+                        </div>
                     </div>
                     ))}
+                </div>
 
+                <div className="mt-8 flex justify-center">
                     <BarChart
-                        xAxis={[
-                            {
-                            scaleType: 'band',
-                            data: metrics.map(m => m.label),
-                            },
-                        ]}
-                        series={[
-                            {
-                            label: 'Domestic',
-                            data: metrics.map(m => Number(m.domestic.toFixed(2))),
-                            color: '#facc15', // yellow
-                            },
-                            {
-                            label: 'International',
-                            data: metrics.map(m => Number(m.international.toFixed(2))),
-                            color: '#3b82f6', // blue
-                            },
-                            {
-                            label: 'Total',
-                            data: metrics.map(m => Number(m.total.toFixed(2))),
-                            color: '#ef4444', // red
-                            },
-                        ]}
-                        width={650}
-                        height={350}
-                        />
+                    xAxis={[
+                        {
+                        scaleType: 'band',
+                        data: metrics.map(m => m.label),
+                        },
+                    ]}
+                    series={[
+                        {
+                        label: 'Domestic',
+                        data: metrics.map(m => Number(m.domestic.toFixed(2))),
+                        color: '#facc15',
+                        },
+                        {
+                        label: 'International',
+                        data: metrics.map(m => Number(m.international.toFixed(2))),
+                        color: '#3b82f6',
+                        },
+                        {
+                        label: 'Total',
+                        data: metrics.map(m => Number(m.total.toFixed(2))),
+                        color: '#ef4444',
+                        },
+                    ]}
+                    width={650}
+                    height={350}
+                    />
+                </div>
             </Drawer>
         </div>
     )
