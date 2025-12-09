@@ -54,15 +54,23 @@ const AboutView = (props) => {
                 <hr />
                 <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     We are Jaunie and Michelle and this our second assignment in COMP 4513 - Advanced Web Development. We've made a basic store page using React and Tailwind. 
-                    There are several views, both immediately visible (see header) and hidden (admin only). The user is assumed an Admin for practicality reasons. <br />
+                    There are several views, both immediately visible (see header) and hidden (admin only, check out the Sales Dashboard and Admin View on the Single Product pages). The user is assumed an Admin for practicality reasons. <br />
                     <br />
                     If you log yourself out, email: 123@gmail.com, and password: 123. Yes, I did take a Cryptography class, thanks for asking.
                     <br /> <br />
                     
-                    MaterialUI was used to create all modals (including this one) and charts. And DaisyUI was used to create the carousel on the Home Page. <br />
+                    MaterialUI was used to create all modals (including this one and the Admin View drawer) and charts. And DaisyUI was used to create the carousel on the Home Page. 
+                    Everything else is a mix of useState, useEffect, contextProvider, and other basic React hooks.
+                    <br />
                     <br />
 
-                    Github Repo: https://github.com/jauniew21/assign2/tree/main
+                    The most rigorous part of the assignment is the filtering system; the way we've set it up has it expand options if they are in the same category
+                    and narrow down options in seperate categories. So, selecting mens and womens shows all clothes, but mens and pants shows only men's pants. (That took forever, by the way).
+                    Also, check out the well formatted Cart and Sales Dashboard.
+                    <br /> <br />
+
+                    <a href="https://github.com/jauniew21/assign2/tree/main" target="_blank">Github Repo: https://github.com/jauniew21/assign2/tree/main
+                    </a>
                 </Typography>
                 <div className="flex justify-end mt-6">
                 <button
