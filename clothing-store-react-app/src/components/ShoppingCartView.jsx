@@ -15,7 +15,7 @@ const ShoppingCartView = (props) => {
         <div className='mt-16' style={{padding: "0"}}>
             <div className='flex flex-col'>
                 <p className="font-bold text-xl">Shopping Cart</p>
-                <div className="flex flex-col py-5">
+                <div className="flex flex-col p-5">
                     <CartItems />
                 </div>
                 <div className='flex flex-row justify-around pt-5 pb-10'>

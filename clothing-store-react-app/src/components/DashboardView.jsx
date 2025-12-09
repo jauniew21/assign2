@@ -54,7 +54,7 @@ const DashboardView = (props) => {
             <div className='grid justify-center'>
                 <p className='font-bold pb-2'>Top 10 Selling Products</p>
                 <table className='table-fixed border-collapse border'>
-                    <tr className='border'>
+                    <tr className='border bg-neutral-700'>
                         <th className='border px-2'>Product Name</th>
                         <th className='border px-2'>Gender</th>
                         <th className='border '>Category</th>
@@ -75,7 +75,7 @@ const DashboardView = (props) => {
             <div className='grid justify-center'>
                 <p className='font-bold pb-2'>Top 10 Profitable Products</p>
                 <table className='border border-collapse table-fixed'>
-                    <tr className='border'>
+                    <tr className='border bg-neutral-700'>
                         <th className='border' >Product Name</th>
                         <th className='border'>Gender</th>
                         <th className='border'>Category</th>
@@ -100,7 +100,7 @@ const DashboardView = (props) => {
                     <p className='font-bold'>Sales + Profit by Category</p>
                     <div className=''>
                         <table className='border table-fixed'>
-                            <tr className='border'>
+                            <tr className='border bg-neutral-700'>
                                 <th className='border'>Category</th>
                                 <th className='border px-2'>Sales $</th>
                                 <th className='border'>Profit $</th>
@@ -118,7 +118,7 @@ const DashboardView = (props) => {
                 </div>
                 <div className='grid justify-center'>
                     <p className='font-bold'>Sales Numbers by Gender</p>
-                    <div className='bg-white pt-10 mb-10 mr-5'>
+                    <div className='bg-neutral-400 pt-10 mb-10 mr-5'>
                         <PieChart series={[
                             { data: genderSalesData }
                         ]}

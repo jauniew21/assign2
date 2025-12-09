@@ -57,22 +57,23 @@ const CartSummary = ({ ship, dest }) => {
 
     total = (merchTotal * tax) + merchTotal + shipCost
 
-    return (<div className='flex flex-col items'>
-        <div className="flex flex-row justify-between">
+    return (<div className='flex flex-col items bg-neutral-700 p-2 mt-1'>
+        <div className="flex flex-row justify-between pb-1">
             <p>Merchandise</p>
             {cart.length > 0 ? (<p>${merchTotal.toFixed(2)}</p>) : (<p>$0.00</p>)}
         </div>
-        <div className="flex flex-row justify-between">
+        <div className="flex flex-row justify-between pb-1">
             <p>Shipping</p>
             {cart.length > 0 ? (<p>${shipCost.toFixed(2)}</p>) : (<p>----</p>)}
         </div>
-        <div className="flex flow-row justify-between">
+        <div className="flex flow-row justify-between pb-1">
             <p>Tax</p>
             {cart.length > 0 ? (<p>${(tax * merchTotal).toFixed(2)}</p>) : (<p>$0.00</p>)}
         </div>
-        <div className='flex flex-row justify-between'>
-            <p>Total</p>
-            {cart.length > 0 ? (<p>${total.toFixed(2)}</p>) : (<p>$0.00</p>)}
+        <hr></hr>
+        <div className='flex flex-row justify-between pt-1'>
+            <p className='font-bold'>Total</p>
+            {cart.length > 0 ? (<p className='font-bold'>${total.toFixed(2)}</p>) : (<p>$0.00</p>)}
             
         </div>
     </div>)

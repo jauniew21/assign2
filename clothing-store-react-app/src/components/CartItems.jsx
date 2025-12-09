@@ -26,8 +26,8 @@ const CartItems = (props) => {
     }
     else {
         return (
-            <div className="grid grid-flow-row gap-y-5 gap-x-6 auto-cols-auto">
-                <div className="col-span-8 grid grid-cols-subgrid">
+            <div className="grid grid-flow-row gap-y-5 gap-x-6 auto-cols-auto bg-neutral-600 pb-5">
+                <div className="col-span-8 grid grid-cols-subgrid bg-neutral-700 py-2 px-5">
                     <p className="col-start-2 font-bold">Items</p>
                     <p className="col-start-4 font-bold">Color</p>
                     <p className="font-bold">Size</p>
@@ -35,7 +35,7 @@ const CartItems = (props) => {
                     <p className="font-bold">Quantity</p>
                     <p className="font-bold">Subtotal</p>
                 </div>
-                <ul className="col-span-8 grid grid-cols-subgrid gap-y-5">
+                <ul className="col-span-8 grid grid-cols-subgrid gap-y-5 mx-5">
                     {cart.map(c =>
                         <li className="col-span-8 grid grid-cols-subgrid grid-flow-col justify-items-center items-center">
                             <button className="size-11" onClick={() => removeItem(c.id)}>-</button>
