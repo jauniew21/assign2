@@ -60,7 +60,7 @@ const Product = (props) => {
 
                 </div>
                 <Link to={`/product/${prod.name}`}>{prod.name}</Link>
-                <p>{prod.gender}' {prod.material} {prod.category}</p>
+                <p className="capitalize">{prod.gender}' {prod.material} {prod.category}</p>
                 <p>Price: ${prod.price.toFixed(2)}</p>
             </div>)}
         </div>
