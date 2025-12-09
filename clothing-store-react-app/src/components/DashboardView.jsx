@@ -55,14 +55,14 @@ const DashboardView = (props) => {
                 <p className='font-bold pb-2'>Top 10 Selling Products</p>
                 <table className='table-fixed border-collapse border'>
                     <tr className='border bg-neutral-700'>
-                        <th className='border px-2'>Product Name</th>
+                        <th className='border p-2'>Product Name</th>
                         <th className='border px-2'>Gender</th>
                         <th className='border '>Category</th>
                         <th className='px-2'>Total Sales (#)</th>
                     </tr>
                     {topSell.slice(0, 10).map(p => {
                         return (<tr className='border'>
-                            <td className='border px-2'>
+                            <td className='border px-2 py-1'>
                                 <Link to={`/product/${p.name}`} key={p.name} style={{ fontWeight: "normal" }} >{p.name}</Link>
                             </td>
                             <td className='border px-2 capitalize'>{p.gender}</td>
@@ -79,7 +79,7 @@ const DashboardView = (props) => {
                         <th className='border' >Product Name</th>
                         <th className='border'>Gender</th>
                         <th className='border'>Category</th>
-                        <th className='border px-2'>Total Sales (#)</th>
+                        <th className='border p-2'>Total Sales (#)</th>
                         <th>Profit ($)</th>
                     </tr>
                     {topProfit.slice(0, 10).map(p => {
@@ -87,7 +87,7 @@ const DashboardView = (props) => {
                             <td className='border px-2'>
                                 <Link to={`/product/${p.name}`} key={p.name} style={{ fontWeight: "normal" }}>{p.name}</Link>
                             </td>
-                            <td className='border px-2 capitalize'>{p.gender}</td>
+                            <td className='border px-2 py-1 capitalize'>{p.gender}</td>
                             <td className='border px-2'>{p.category}</td>
                             <td className='border'>{p.sales.total}</td>
                             <td className='border px-2'>${(p.sales.total * p.price).toFixed(2)}</td>
@@ -96,18 +96,18 @@ const DashboardView = (props) => {
                 </table>
             </div>
             <div className='grid grid-cols-3 col-span-2'>
-                <div className='grid justify-center'>
+                <div className='grid justify-center content-start'>
                     <p className='font-bold'>Sales + Profit by Category</p>
                     <div className=''>
-                        <table className='border table-fixed'>
+                        <table className='border table-fixed mt-2'>
                             <tr className='border bg-neutral-700'>
                                 <th className='border'>Category</th>
-                                <th className='border px-2'>Sales $</th>
+                                <th className='border p-2'>Sales $</th>
                                 <th className='border'>Profit $</th>
                             </tr>
                             {sortedCategory.map((p) => (
                                 (<tr key={p.category} className='border'>
-                                    <td className='border px-2'>{p.category}</td>
+                                    <td className='border px-2 py-1'>{p.category}</td>
                                     <td className='border'>{p.totalSales}</td>
                                     <td className='px-2'>${p.totalProfit.toFixed(2)}</td>
                                 </tr>)
@@ -118,7 +118,7 @@ const DashboardView = (props) => {
                 </div>
                 <div className='grid justify-center'>
                     <p className='font-bold'>Sales Numbers by Gender</p>
-                    <div className='bg-white pt-10 mb-10 mr-5'>
+                    <div className='bg-white pt-10 mb-24 mr-5'>
                         <PieChart series={[
                             { data: genderSalesData }
                         ]}
@@ -126,7 +126,7 @@ const DashboardView = (props) => {
                             height={200} /></div>
                 </div>
                 <div>
-                    <p className='font-bold'>Sales Numbers by Category</p>
+                    <p className='font-bold mb-2'>Sales Numbers by Category</p>
                     <div className='bg-white'>
                         <PieChart series={[
                             { data: categoryPie }

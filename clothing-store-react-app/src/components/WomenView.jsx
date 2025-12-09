@@ -10,10 +10,10 @@ const WomenView = (props) => {
 
     if (props.gender) {
         womenEntries = props.products.filter(prod => prod.gender == 'womens')
-        genderHeader = "Women"
+        genderHeader = "Womens"
     } else {
         womenEntries = props.products.filter(prod => prod.gender == 'mens')
-        genderHeader = "Men"
+        genderHeader = "Mens"
     }
 
     return (<div className='pt-16'>
