@@ -7,12 +7,13 @@ const HomeView = (props) => {
     // DaisyUI carousel: https://daisyui.com/components/carousel/?lang=en#slide1
     return(<div className='pt-16'>
 
-        <div className="w-full h-28 overflow-hidden pb-10">
+        <div className="w-full h-28 overflow-hidden pb-10 relative">
             <img
                 src={placeholder}
                 alt="placeholder"
                 className="w-full h-full object-cover"
             />
+            <p className='font-bold absolute bottom-16 left-146 text-black text-xl'>Home</p>
         </div>
 
         <div className="carousel w-120">
