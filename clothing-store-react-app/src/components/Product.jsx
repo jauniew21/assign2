@@ -21,8 +21,9 @@ const Product = (props) => {
     const { cart, setCart } = useContext(CartContext)
 
     return (<div className="pt-16">
-        <div className="py-2">
-            <p>{breadcrumb}</p>
+        <div className="flex flex-row py-2">
+            {props.isLoggedIn ? '' : <AdminProductView product={thisProduct} />}
+            <p className="ml-5 flex self-center capitalize">{breadcrumb}</p>
         </div>
         <div className="flex gap-5">
             <div className="flex flex-col gap-2">
@@ -34,15 +35,10 @@ const Product = (props) => {
             </div>
 
             <div className="flex flex-col">
-                <p>{thisProduct?.name}</p>
+                <p className="font-bold text-lg">{thisProduct?.name}</p>
                 <p>Price: ${thisProduct?.price.toFixed(2)}</p>
                 <p className="text-left">{thisProduct?.description}</p>
 
-                {/* <div className="flex gap-2 justify-center">
-                    {thisProduct?.sizes.map(s => <div>
-                        <button className="w-12 h-12 flex justify-center items-center border rounded">{s}</button>
-                    </div>)}
-                </div> */}
                 <div className="">
                     {thisProduct?.color.map(c => <div className="flex justify-center">
                         <button style={{ backgroundColor: c.hex }} className="w-12 h-12"></button>
@@ -50,8 +46,6 @@ const Product = (props) => {
                 </div>
                 {thisProduct && (<AddItemButton prod={thisProduct} showQuantity={true} />)}
 
-
-                {props.isLoggedIn ? '' : <AdminProductView product={thisProduct} />}
             </div>
         </div>
 

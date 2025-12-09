@@ -25,30 +25,44 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
     }
 
     return (
-        <div className='flex flex-col gap-2'>
-            {prod.sizes && (
-                <div className='flex justify-center gap-2'>
-                    {prod.sizes.map((size, i) => (
-                        <button key={i} type='button' className='w-12 h-12' onClick={() => setSelSize(size)}>{size}</button>
-                    ))}
+        <div className=''>
+            {prod.sizes && !showQuantity && (
+                <div className=''>
+                    <div className=''>
+                        {prod.sizes.map((size, i) => (
+                            <button key={i} type='button' className='w-12 h-12 m-0.5' style={{backgroundColor: "#505050"}} onClick={() => setSelSize(size)}>{size}</button>
+                        ))}
+                    </div>
+                    <button style={{backgroundColor: "#303030"}} onClick={addItem}>Add to Cart</button>
                 </div>
+
             )}
-            {showQuantity && (
-                <div className='flex flex-row justify-center gap-2'>
-                    <button type="button" onClick={() => setQuantity(prev => Math.max(prev - 1, 1))} >
-                        -
-                    </button>
-                    <input type="number" className='w-8'
-                        value={quantity} min="1"
-                        onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))} />
-                    <button type="button"
-                        onClick={() => setQuantity(prev => prev + 1)}>
-                        +</button>
+            {showQuantity && prod.sizes && (
+                <div>
+                    <div className='flex flex-col gap-2'>
+                        <div className='flex justify-center gap-1 mt-2'>
+                            {prod.sizes.map((size, i) => (
+                                <button key={i} type='button' className='w-12 h-12' onClick={() => setSelSize(size)}>{size}</button>
+                            ))}
+                        </div>
+
+                        <div className='flex flex-row justify-center gap-2 mb-2'>
+                            <button type="button" onClick={() => setQuantity(prev => Math.max(prev - 1, 1))} >
+                                -
+                            </button>
+                            <input type="number" className='w-8 text-center ml-3'
+                                value={quantity} min="1"
+                                onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))} />
+                            <button type="button"
+                                onClick={() => setQuantity(prev => prev + 1)}>
+                                +</button>
+                        </div>
+                    </div>
+                    <button className="mb-2" onClick={addItem}>Add to Cart</button>
                 </div>
             )
             }
-            <button onClick={addItem}>Add to Cart</button>
-        </div >
+        </div>
     )
 }
 

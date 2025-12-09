@@ -4,23 +4,26 @@ import { Link } from 'react-router-dom';
 import AddItemButton from './AddItemButton';
 
 const WomenView = (props) => {
+    let genderHeader = ""
     console.log(props.gender);
     let womenEntries = []
 
     if (props.gender) {
         womenEntries = props.products.filter(prod => prod.gender == 'womens')
+        genderHeader = "Women"
     } else {
         womenEntries = props.products.filter(prod => prod.gender == 'mens')
+        genderHeader = "Men"
     }
 
     return (<div className='pt-16'>
-
-        <div className="w-full h-28 overflow-hidden pb-10">
+        <div className="w-full h-28 overflow-hidden pb-10 relative">
             <img
                 src={placeholder}
                 alt="placeholder"
                 className="w-full h-full object-cover"
             />
+            <p className='font-bold absolute bottom-16 left-146 text-black text-xl'>{genderHeader}</p>
         </div>
 
         <ul className="grid grid-cols-4 gap-6">

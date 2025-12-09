@@ -57,23 +57,26 @@ const BrowseView = (props) => {
     }, [selected]);
 
     return (<div className='pt-16'>
-        <div>Sort: </div>
-        <select
-            onChange={(e) => setSort(e.target.value)}
-            className="px-3 py-2 rounded border bg-white text-black">
-            {/* <option value="">Sort by…</option> */}
-            <option value="name">Product Name (A–Z)</option>
-            <option value="price">Price</option>
-            <option value="category">Category</option>
-        </select>
+        <p className='font-bold text-xl mb-5'>Browse</p>
+        <div>Sort:
+            <select
+                onChange={(e) => setSort(e.target.value)}
+                className="mx-5 px-3 py-2 rounded border bg-neutral-200 text-black">
+                {/* <option value="">Sort by…</option> */}
+                <option value="name">Product Name (A–Z)</option>
+                <option value="price">Price</option>
+                <option value="category">Category</option>
+            </select>
+        </div>
 
-        <div>Results: </div> 
-        <button 
-        onClick={() => {setSelected([])}}
-        className='bg-red-600'>Clear All</button>
-        {selected.map(cat => 
-            <button onClick={() => toggleSelected(cat)}>
-            {cat}</button>)}
+        <div>Results:
+            <button
+                onClick={() => { setSelected([]) }}
+                className='bg-red-600 ml-5 mt-2'>Clear All</button>
+            {selected.map(cat =>
+                <button onClick={() => toggleSelected(cat)}>
+                    {cat}</button>)}
+        </div>
 
         <nav className="fixed top-16 left-0 w-90 bottom-0 bg-gray-800/50">
             <div className="collapse collapse-plus bg-base-100 border-base-300 border">
@@ -96,12 +99,12 @@ const BrowseView = (props) => {
                 <div className="collapse-title font-semibold">Category</div>
                 <div className="collapse-content text-sm">
                     {category_opt.map(c => {
-                    const active = selected.includes(c);
+                        const active = selected.includes(c);
 
-                    return (
-                        <button onClick={() => toggleSelected(c)}
-                            className={`${active ? "text-red-700" : "bg-black text-white"}`}>
-                            {c}</button>)
+                        return (
+                            <button onClick={() => toggleSelected(c)}
+                                className={`${active ? "text-red-700" : "bg-black text-white"}`}>
+                                {c}</button>)
                     })}
                 </div>
             </div>
@@ -121,7 +124,7 @@ const BrowseView = (props) => {
                     })}
                 </div>
             </div>
-            
+
             <div className="collapse collapse-plus bg-base-100 border-base-300 border">
                 <input type="checkbox" />
                 <div className="collapse-title font-semibold">Colors</div>

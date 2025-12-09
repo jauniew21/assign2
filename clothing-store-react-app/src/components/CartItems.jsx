@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "./CartContext.jsx";
 import placeholder from '../assets/shop-placeholder.png'
+import { Link } from 'react-router-dom';
 
 const CartItems = (props) => {
     const { cart, setCart } = useContext(CartContext)
@@ -26,8 +27,8 @@ const CartItems = (props) => {
     }
     else {
         return (
-            <div className="grid grid-flow-row gap-y-5 gap-x-6 auto-cols-auto bg-neutral-600 pb-5">
-                <div className="col-span-8 grid grid-cols-subgrid bg-neutral-700 py-2 px-5">
+            <div className="grid grid-flow-row gap-y-5 gap-x-6 auto-cols-auto bg-neutral-800 pb-5">
+                <div className="col-span-8 grid grid-cols-subgrid bg-neutral-900 py-2 px-5">
                     <p className="col-start-2 font-bold">Items</p>
                     <p className="col-start-4 font-bold">Color</p>
                     <p className="font-bold">Size</p>
@@ -40,8 +41,8 @@ const CartItems = (props) => {
                         <li className="col-span-8 grid grid-cols-subgrid grid-flow-col justify-items-center items-center">
                             <button className="size-11" onClick={() => removeItem(c.id)}>-</button>
                             <img src={placeholder} alt="placeholder image" className='h-35 w-35' />
-                            <p>{c.name}</p>
-                            <button style={{ backgroundColor: c.color[0].hex }} className="w-12 h-12"></button>
+                            <Link to={`/product/${c.name}`} key={c.name}>{c.name}</Link>
+                            <button style={{ backgroundColor: c.color[0].hex, border: "solid #15191e" }} className="w-12 h-12"></button>
                             <p>{c.size}</p>
                             <p>${c.price.toFixed(2)}</p>
                             <p>{c.quantity}</p>

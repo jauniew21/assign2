@@ -65,7 +65,7 @@ const DashboardView = (props) => {
                             <td className='border px-2'>
                                 <Link to={`/product/${p.name}`} key={p.name} style={{ fontWeight: "normal" }} >{p.name}</Link>
                             </td>
-                            <td className='border px-2'>{p.gender}</td>
+                            <td className='border px-2 capitalize'>{p.gender}</td>
                             <td className='border px-2'>{p.category}</td>
                             <td className='border'>{p.sales.total}</td>
                         </tr>)
@@ -87,7 +87,7 @@ const DashboardView = (props) => {
                             <td className='border px-2'>
                                 <Link to={`/product/${p.name}`} key={p.name} style={{ fontWeight: "normal" }}>{p.name}</Link>
                             </td>
-                            <td className='border px-2'>{p.gender}</td>
+                            <td className='border px-2 capitalize'>{p.gender}</td>
                             <td className='border px-2'>{p.category}</td>
                             <td className='border'>{p.sales.total}</td>
                             <td className='border px-2'>${(p.sales.total * p.price).toFixed(2)}</td>
@@ -118,7 +118,7 @@ const DashboardView = (props) => {
                 </div>
                 <div className='grid justify-center'>
                     <p className='font-bold'>Sales Numbers by Gender</p>
-                    <div className='bg-neutral-400 pt-10 mb-10 mr-5'>
+                    <div className='bg-white pt-10 mb-10 mr-5'>
                         <PieChart series={[
                             { data: genderSalesData }
                         ]}
