@@ -25,33 +25,34 @@ const Product = (props) => {
             {props.isLoggedIn ? '' : <AdminProductView product={thisProduct} />}
             <p className="ml-5 flex self-center capitalize">{breadcrumb}</p>
         </div>
-        <div className="flex gap-5">
-            <div className="flex flex-col gap-2">
-                <img src={placeholder} alt="placeholder image" className='size-72' />
-                <div className="flex">
-                    <img src={placeholder} alt="placeholder image" className='size-36' />
-                    <img src={placeholder} alt="placeholder image" className='size-36' />
+        <div className="flex flex-row gap-8">
+            <div className="flex flex-col gap-3 ml-20">
+                <img src={placeholder} alt="placeholder image" className='size-100 mr-20' />
+                <div className="flex gap-4 pl-1">
+                    <img src={placeholder} alt="placeholder image" className='size-30' />
+                    <img src={placeholder} alt="placeholder image" className='size-30' />
+                    <img src={placeholder} alt="placeholder image" className='size-30' />
                 </div>
             </div>
 
-            <div className="flex flex-col">
-                <p className="font-bold text-lg">{thisProduct?.name}</p>
-                <p>Price: ${thisProduct?.price.toFixed(2)}</p>
-                <p className="text-left">{thisProduct?.description}</p>
+            <div className="flex flex-col items-start">
+                <p className="font-bold text-lg pb-1">{thisProduct?.name}</p>
+                <p className="text-left mr-50">{thisProduct?.description}</p>
+                <p className="pb-4">Price: ${thisProduct?.price.toFixed(2)}</p>
 
-                <div className="">
+                <div className="flex justify-center items-center gap-10 p-4">
+                    <p>Material: {thisProduct.material}</p>
                     {thisProduct?.color.map(c => <div className="flex justify-center">
                         <button style={{ backgroundColor: c.hex }} className="w-12 h-12"></button>
                     </div>)}
                 </div>
                 {thisProduct && (<AddItemButton prod={thisProduct} showQuantity={true} />)}
-
             </div>
         </div>
 
-        <p>Related Products</p>
+        <p className="font-bold my-3">Related Products</p>
         <div className="flex gap-6 justify-center">
-            {relatedProd.map(prod => <div>
+            {relatedProd.map(prod => <div className="flex flex-col items-center w-54">
                 <div className='group relative'>
                     <img key={prod.price + prod.id} src={placeholder} alt="placeholder image" className='size-48' />
                     <div className="absolute bottom-1 right-1 invisible group-hover:visible">
@@ -59,7 +60,7 @@ const Product = (props) => {
                     </div>
 
                 </div>
-                <Link to={`/product/${prod.name}`}>{prod.name}</Link>
+                <Link to={`/product/${prod.name}`} >{prod.name}</Link>
                 <p className="capitalize">{prod.gender}' {prod.material} {prod.category}</p>
                 <p>Price: ${prod.price.toFixed(2)}</p>
             </div>)}

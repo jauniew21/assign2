@@ -27,9 +27,9 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
         <div className=''>
             {prod.sizes && !showQuantity && (
                 <div className=''>
-                    <div className=''>
+                    <div className='flex flex-wrap justify-center'>
                         {prod.sizes.map((size, i) => (
-                            <button key={i} type='button' className='w-12 h-12 m-0.5' style={{ backgroundColor: "#505050" }} onClick={() => setSize(size)}>{size}</button>
+                            <button key={i} type='button' className='w-12 h-12 m-0.5' style={{ display: "flex", justifyContent: "center", backgroundColor: "#505050" }} onClick={() => setSize(size)}>{size}</button>
                         ))}
                     </div>
                     <button style={{ backgroundColor: "#303030" }} onClick={addItem}>Add to Cart</button>
@@ -41,11 +41,11 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
                     <div className='flex flex-col gap-2'>
                         <div className='flex justify-center gap-1 mt-2'>
                             {prod.sizes.map((size, i) => (
-                                <button key={i} type='button' className='w-12 h-12' onClick={() => setSize(size)}>{size}</button>
+                                <button key={i} type='button' className='w-12 h-12' style={{display: "flex", justifyContent: "center"}} onClick={() => setSize(size)}>{size}</button>
                             ))}
                         </div>
 
-                        <div className='flex flex-row justify-center gap-2 mb-2'>
+                        <div className='flex flex-row justify-center gap-2 mb-5'>
                             <button type="button" onClick={() => setQuantity(prev => Math.max(prev - 1, 1))} >
                                 -
                             </button>
@@ -57,7 +57,7 @@ const AddItemButton = ({ prod, showQuantity = false }) => {
                                 +</button>
                         </div>
                     </div>
-                    <button className="mb-2" onClick={addItem}>Add to Cart</button>
+                    <button className="mb-2" style={{backgroundColor: "#646cff"}} onClick={addItem}>Add to Cart</button>
                 </div>
             )
             }
